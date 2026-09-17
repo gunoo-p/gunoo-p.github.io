@@ -64,19 +64,33 @@ function App() {
   return (
     <main>
       <header id="intro">
-        <div className="profile-row">
-          {profile.photo && <img className="photo" src={profile.photo} alt={profile.name} />}
-          <div>
-            <p className="eyebrow">PORTFOLIO · 2026</p>
-            <h1>{profile.name}</h1>
-            <p className="role">{profile.role}</p>
+        <div className="hero-copy">
+          <div className="profile-row">
+            {profile.photo && <img className="photo" src={profile.photo} alt={profile.name} />}
+            <div>
+              <p className="eyebrow">PORTFOLIO · 2026</p>
+              <h1>{profile.name}</h1>
+              <p className="role">{profile.role}</p>
+            </div>
+          </div>
+          <p className="intro-copy">{profile.intro}</p>
+          <nav aria-label="연락처">
+            <a className="contact-link primary" href={`mailto:${profile.email}`}>이메일 보내기</a>
+            <a className="contact-link" href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a>
+          </nav>
+        </div>
+        <div className="motion-graphic" aria-hidden="true">
+          <div className="orbit orbit-one"><i /></div>
+          <div className="orbit orbit-two"><i /></div>
+          <div className="core">
+            <span>BUILD</span>
+            <strong>01</strong>
+          </div>
+          <div className="signal-card">
+            <span className="signal-dot" />
+            <span>OPEN TO WORK</span>
           </div>
         </div>
-        <p className="intro-copy">{profile.intro}</p>
-        <nav aria-label="연락처">
-          <a className="contact-link primary" href={`mailto:${profile.email}`}>이메일 보내기</a>
-          <a className="contact-link" href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a>
-        </nav>
       </header>
 
       <section id="experience">

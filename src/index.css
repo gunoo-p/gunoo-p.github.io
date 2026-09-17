@@ -7,10 +7,13 @@
   --accent: #aa3bff;
   --accent-bg: rgba(170, 59, 255, 0.1);
   --accent-border: rgba(170, 59, 255, 0.5);
+  --surface: #fbf9ff;
+  --grid-line: rgba(170, 59, 255, 0.08);
   --social-bg: rgba(244, 243, 236, 0.5);
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
@@ -41,6 +44,8 @@
     --accent: #c084fc;
     --accent-bg: rgba(192, 132, 252, 0.15);
     --accent-border: rgba(192, 132, 252, 0.5);
+    --surface: #1a1b23;
+    --grid-line: rgba(192, 132, 252, 0.08);
     --social-bg: rgba(47, 48, 58, 0.5);
     --shadow:
       rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
@@ -57,7 +62,7 @@ body {
 }
 
 #root {
-  max-width: 720px;
+  max-width: 1040px;
   margin: 0 auto;
   min-height: 100svh;
   box-sizing: border-box;
