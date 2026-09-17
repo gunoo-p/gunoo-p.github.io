@@ -1,0 +1,33 @@
+#root {
+  text-align: left;
+  padding: 48px 24px;
+}
+
+header#intro {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.role {
+  color: var(--text-h);
+  font-weight: 500;
+}
+
+section,
+footer {
+  margin-bottom: 40px;
+}
+
+article {
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+}
+
+.period {
+  font-size: 14px;
+  color: var(--text);
+}
+
+a {
+  color: var(--accent);
+}
