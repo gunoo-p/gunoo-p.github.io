@@ -1,6 +1,10 @@
 #root {
   text-align: left;
-  padding: 32px 28px 40px;
+  padding: 0 28px 40px;
+}
+
+main {
+  counter-reset: section;
 }
 
 header#intro {
@@ -9,8 +13,9 @@ header#intro {
   grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
   align-items: center;
   gap: 56px;
-  min-height: 560px;
-  margin-bottom: 96px;
+  min-height: 100svh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .profile-row {
@@ -211,13 +216,47 @@ article li::marker {
   font-weight: 550;
 }
 
-section,
-footer {
-  margin-bottom: 64px;
+section {
+  counter-increment: section;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100svh;
+  padding: 80px 0;
+  box-sizing: border-box;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  box-shadow: 0 0 0 100vmax var(--section-bg, transparent);
+  clip-path: inset(0 -100vmax);
 }
 
-section {
-  scroll-margin-top: 32px;
+section:nth-of-type(even) {
+  --section-bg: var(--surface);
+}
+
+section > h2 {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 32px;
+  font-size: 32px;
+  letter-spacing: -0.04em;
+  text-transform: none;
+}
+
+section > h2::before {
+  content: '0' counter(section);
+  color: var(--accent);
+  font: 700 11px/1 var(--mono);
+  letter-spacing: 0.08em;
+}
+
+section > h2::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  margin-left: 8px;
+  background: var(--border);
 }
 
 article {
@@ -303,6 +342,7 @@ footer {
   padding-top: 24px;
   border-top: 1px solid var(--border);
   font-size: 14px;
+  margin: 48px 0 0;
 }
 
 footer a {
@@ -366,8 +406,9 @@ footer a {
   header#intro {
     grid-template-columns: 1fr;
     gap: 40px;
-    min-height: auto;
-    margin-bottom: 64px;
+    min-height: 100svh;
+    padding: 56px 0;
+    box-sizing: border-box;
   }
 
   .motion-graphic {
@@ -396,6 +437,17 @@ footer a {
   .cert-list {
     grid-template-columns: 1fr;
     gap: 0;
+  }
+
+  section {
+    min-height: 100svh;
+    padding: 64px 0;
+    scroll-snap-stop: normal;
+  }
+
+  section > h2 {
+    margin-bottom: 24px;
+    font-size: 27px;
   }
 }
 
