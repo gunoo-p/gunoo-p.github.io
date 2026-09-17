@@ -60,6 +60,14 @@ const certifications = [
 
 const aiTools = ['Claude Code', 'Codex', 'ChatGPT']
 
+const journey = [
+  { period: '기초', title: '서호중학교', detail: '관심을 진로로 구체화하기 시작' },
+  { period: '2017 - 2020', title: '삼일공업고등학교', detail: '정보통신과 · 기술의 기본기를 쌓음' },
+  { period: '2019 - 2021', title: '(주)날다', detail: '개발부 주임 · 현장에서 제품을 만들고 운영' },
+  { period: '군 복무', title: '대한민국 육군', detail: '행정병 · 병장 만기 전역' },
+  { period: '2024 - 2027', title: '대림대학교', detail: '컴퓨터정보학부 · 개발 역량을 확장하는 중' },
+]
+
 function App() {
   return (
     <main>
@@ -79,17 +87,17 @@ function App() {
             <a className="contact-link" href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a>
           </nav>
         </div>
-        <div className="motion-graphic" aria-hidden="true">
-          <div className="orbit orbit-one"><i /></div>
-          <div className="orbit orbit-two"><i /></div>
-          <div className="core">
-            <span>BUILD</span>
-            <strong>01</strong>
-          </div>
-          <div className="signal-card">
-            <span className="signal-dot" />
-            <span>OPEN TO WORK</span>
-          </div>
+        <div className="journey" aria-label="학업과 경력 흐름">
+          <p className="journey-label">MY JOURNEY</p>
+          <ol>
+            {journey.map((item) => (
+              <li key={item.title}>
+                <span className="journey-period">{item.period}</span>
+                <strong>{item.title}</strong>
+                <span>{item.detail}</span>
+              </li>
+            ))}
+          </ol>
         </div>
       </header>
 

@@ -61,108 +61,93 @@ nav {
   animation: hero-enter 600ms 60ms var(--ease-out) both;
 }
 
-.motion-graphic {
-  position: relative;
-  aspect-ratio: 1;
-  max-width: 380px;
+.journey {
+  max-width: 420px;
   width: 100%;
   justify-self: end;
+  padding: 30px;
+  box-sizing: border-box;
   border: 1px solid var(--border);
-  border-radius: 36px;
-  overflow: hidden;
+  border-radius: 28px;
   background:
-    radial-gradient(circle at 50% 50%, var(--accent-bg), transparent 48%),
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+    radial-gradient(circle at 100% 0, var(--accent-bg), transparent 45%),
     var(--surface);
-  background-size: auto, 32px 32px, 32px 32px, auto;
   box-shadow: var(--shadow);
   animation: graphic-enter 800ms 100ms var(--ease-out) both;
 }
 
-.orbit {
-  position: absolute;
-  inset: 18%;
-  border: 1px solid var(--accent-border);
-  border-radius: 50%;
-  animation: orbit-spin 14s linear infinite;
-}
-
-.orbit-two {
-  inset: 30%;
-  border-style: dashed;
-  animation-duration: 9s;
-  animation-direction: reverse;
-}
-
-.orbit i {
-  position: absolute;
-  top: 50%;
-  left: -5px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 24px var(--accent);
-}
-
-.orbit-two i {
-  top: 8%;
-  left: auto;
-  right: 10%;
-  width: 7px;
-  height: 7px;
-}
-
-.core {
-  position: absolute;
-  inset: 39%;
-  display: grid;
-  place-content: center;
-  border: 1px solid var(--accent-border);
-  border-radius: 20px;
+.journey-label {
+  margin-bottom: 22px;
   color: var(--accent);
-  background: var(--bg);
-  text-align: center;
-  transform: rotate(-6deg);
-  animation: core-float 4s var(--ease-in-out) infinite alternate;
-}
-
-.core span,
-.signal-card {
-  font-size: 9px;
-  font-weight: 750;
+  font: 750 10px/1 var(--mono);
   letter-spacing: 0.12em;
 }
 
-.core strong {
-  color: var(--text-h);
-  font-size: 26px;
-  line-height: 1;
+.journey ol {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.signal-card {
+.journey ol::before {
+  content: '';
   position: absolute;
-  right: 18px;
-  bottom: 18px;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 9px 11px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  color: var(--text-h);
-  background: var(--bg);
-  box-shadow: var(--shadow);
+  top: 8px;
+  bottom: 12px;
+  left: 5px;
+  width: 1px;
+  background: linear-gradient(var(--accent), var(--border));
+  transform-origin: top;
+  animation: line-grow 900ms 300ms var(--ease-out) both;
 }
 
-.signal-dot {
-  width: 7px;
-  height: 7px;
+.journey li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 1px 16px;
+  padding: 0 0 18px 24px;
+  animation: hero-enter 450ms var(--delay) var(--ease-out) both;
+}
+
+.journey li:nth-child(1) { --delay: 180ms; }
+.journey li:nth-child(2) { --delay: 240ms; }
+.journey li:nth-child(3) { --delay: 300ms; }
+.journey li:nth-child(4) { --delay: 360ms; }
+.journey li:nth-child(5) { --delay: 420ms; padding-bottom: 0; }
+
+.journey li::before {
+  content: '';
+  position: absolute;
+  top: 7px;
+  left: 1px;
+  width: 9px;
+  height: 9px;
+  box-sizing: border-box;
+  border: 2px solid var(--surface);
   border-radius: 50%;
-  background: #22c55e;
-  box-shadow: 0 0 0 4px rgb(34 197 94 / 12%);
-  animation: signal-pulse 2s ease infinite;
+  background: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent-border);
+}
+
+.journey-period {
+  grid-row: span 2;
+  padding-top: 1px;
+  color: var(--accent);
+  font: 650 10px/1.4 var(--mono);
+}
+
+.journey strong {
+  color: var(--text-h);
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.journey li > span:last-child {
+  color: var(--text);
+  font-size: 11px;
+  line-height: 1.45;
 }
 
 .contact-link {
@@ -360,9 +345,6 @@ footer a {
     color: var(--accent);
   }
 
-  .motion-graphic:hover .orbit-one {
-    animation-duration: 7s;
-  }
 }
 
 @supports (animation-timeline: view()) {
@@ -382,16 +364,8 @@ footer a {
   from { opacity: 0; transform: scale(0.96) translateY(16px); }
 }
 
-@keyframes orbit-spin {
-  to { transform: rotate(360deg); }
-}
-
-@keyframes core-float {
-  to { transform: translateY(-8px) rotate(4deg); }
-}
-
-@keyframes signal-pulse {
-  50% { opacity: 0.45; }
+@keyframes line-grow {
+  from { transform: scaleY(0); }
 }
 
 @keyframes section-reveal {
@@ -400,7 +374,7 @@ footer a {
 
 @media (max-width: 800px) {
   #root {
-    padding: 40px 20px 24px;
+    padding: 0 20px 24px;
   }
 
   header#intro {
@@ -411,9 +385,10 @@ footer a {
     box-sizing: border-box;
   }
 
-  .motion-graphic {
+  .journey {
     width: min(100%, 340px);
     justify-self: center;
+    padding: 24px;
   }
 
   .profile-row {
@@ -442,7 +417,6 @@ footer a {
   section {
     min-height: 100svh;
     padding: 64px 0;
-    scroll-snap-stop: normal;
   }
 
   section > h2 {
@@ -456,10 +430,9 @@ footer a {
   .profile-row > div,
   .intro-copy,
   nav,
-  .motion-graphic,
-  .orbit,
-  .core,
-  .signal-dot,
+  .journey,
+  .journey li,
+  .journey ol::before,
   section,
   footer {
     animation: none;
