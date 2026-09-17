@@ -62,20 +62,31 @@ const aiTools = ['Claude Code', 'Codex', 'ChatGPT']
 
 function App() {
   return (
-    <>
+    <main>
       <header id="intro">
-        {profile.photo && <img className="photo" src={profile.photo} alt={profile.name} />}
-        <h1>{profile.name}</h1>
-        <p className="role">{profile.role}</p>
-        <p>{profile.intro}</p>
+        <div className="profile-row">
+          {profile.photo && <img className="photo" src={profile.photo} alt={profile.name} />}
+          <div>
+            <p className="eyebrow">PORTFOLIO · 2026</p>
+            <h1>{profile.name}</h1>
+            <p className="role">{profile.role}</p>
+          </div>
+        </div>
+        <p className="intro-copy">{profile.intro}</p>
+        <nav aria-label="연락처">
+          <a className="contact-link primary" href={`mailto:${profile.email}`}>이메일 보내기</a>
+          <a className="contact-link" href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a>
+        </nav>
       </header>
 
       <section id="experience">
         <h2>경력</h2>
         {experiences.map((exp) => (
           <article key={exp.company + exp.period}>
-            <h3>{exp.title} · {exp.company}</h3>
-            <p className="period">{exp.period}</p>
+            <div className="article-heading">
+              <h3>{exp.title} · {exp.company}</h3>
+              <p className="period">{exp.period}</p>
+            </div>
             <ul>
               {exp.highlights.map((h) => (
                 <li key={h}>{h}</li>
@@ -89,17 +100,21 @@ function App() {
         <h2>프로젝트</h2>
         {projects.map((proj) => (
           <article key={proj.name}>
-            <h3>
-              {proj.link ? <a href={proj.link} target="_blank" rel="noreferrer">{proj.name}</a> : proj.name}
-            </h3>
-            <p className="period">{proj.period}</p>
+            <div className="article-heading">
+              <h3>
+                {proj.link ? <a href={proj.link} target="_blank" rel="noreferrer">{proj.name}</a> : proj.name}
+              </h3>
+              <p className="period">{proj.period}</p>
+            </div>
             <p>{proj.description}</p>
             <ul>
               {proj.highlights.map((h) => (
                 <li key={h}>{h}</li>
               ))}
             </ul>
-            <p className="period">사용 기술: {proj.tech}</p>
+            <div className="tag-list" aria-label="사용 기술">
+              {proj.tech.split(', ').map((tech) => <span key={tech}>{tech}</span>)}
+            </div>
           </article>
         ))}
       </section>
@@ -116,7 +131,9 @@ function App() {
 
       <section id="ai-tools">
         <h2>AI 활용 경험</h2>
-        <p>{aiTools.join(', ')}</p>
+        <div className="tag-list">
+          {aiTools.map((tool) => <span key={tool}>{tool}</span>)}
+        </div>
       </section>
 
       <section id="certifications">
@@ -131,11 +148,10 @@ function App() {
       </section>
 
       <footer id="contact">
-        <h2>연락처</h2>
-        <p><a href={`mailto:${profile.email}`}>{profile.email}</a></p>
-        <p><a href={profile.github} target="_blank" rel="noreferrer">{profile.github}</a></p>
+        <p>함께 만들 일이 있다면 편하게 연락해 주세요.</p>
+        <a href={`mailto:${profile.email}`}>{profile.email}</a>
       </footer>
-    </>
+    </main>
   )
 }
 
