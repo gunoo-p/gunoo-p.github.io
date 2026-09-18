@@ -2,7 +2,7 @@ import './App.css'
 
 const profile = {
   name: '박건우',
-  role: '소프트웨어 개발자 (QA · 임베디드 · 프론트엔드)',
+  role: '소프트웨어 개발자',
   email: 'gunwoo405@naver.com',
   github: 'https://github.com/gunoo-p',
   photo: '/profile.jpg',
@@ -146,11 +146,12 @@ function App() {
 
       <section id="projects">
         <h2>프로젝트</h2>
+        <p className="section-lead">{projects.length}개의 프로젝트 · 옆으로 넘겨서 살펴보세요</p>
         <div className="project-grid">
           {projects.map((proj, index) => (
             <article className="project-card" key={proj.name}>
               <div className="project-meta">
-                <span>0{index + 1}</span>
+                <span>{String(index + 1).padStart(2, '0')}</span>
                 <span>{proj.period}</span>
               </div>
               <h3>{proj.name}</h3>
