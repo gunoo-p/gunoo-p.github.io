@@ -61,7 +61,7 @@ const certifications = [
 const aiTools = ['Claude Code', 'Codex', 'ChatGPT']
 
 const journey = [
-  { period: '기초', title: '서호중학교', detail: '관심을 진로로 구체화하기 시작' },
+  { period: '2014 - 2017', title: '서호중학교', detail: '정보통신 분야에 대한 관심을 키움' },
   { period: '2017 - 2020', title: '삼일공업고등학교', detail: '정보통신과 · 기술의 기본기를 쌓음' },
   { period: '2019 - 2021', title: '(주)날다', detail: '개발부 주임 · 현장에서 제품을 만들고 운영' },
   { period: '군 복무', title: '대한민국 육군', detail: '행정병 · 병장 만기 전역' },
@@ -121,7 +121,8 @@ function App() {
       <section id="projects">
         <h2>프로젝트</h2>
         {projects.map((proj) => (
-          <article key={proj.name}>
+          <article className="project-card" key={proj.name}>
+            <p className="project-kicker">FEATURED PROJECT</p>
             <div className="article-heading">
               <h3>
                 {proj.link ? <a href={proj.link} target="_blank" rel="noreferrer">{proj.name}</a> : proj.name}
