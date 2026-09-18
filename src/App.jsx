@@ -29,22 +29,31 @@ const projects = [
   {
     name: '비접촉 온도측정기',
     period: '2021.06 - 2021.07',
-    description:
-      '코로나19 확산 시기, 식당·소상공인을 대상으로 한 비접촉식 발열 체크 및 출입 관리 시스템. ESP32 기반으로 초음파/적외선 센서와 TFT LCD를 통합해 하드웨어 제작부터 펌웨어 개발, 상용화 판매까지 전 과정을 주도했습니다.',
-    highlights: [
-      '기획 → 하드웨어 패키징 → 필드 테스트를 거쳐 지역 상권(식당 3곳)에 총 300만 원 규모 판매 달성',
-      '초음파·적외선 센서의 노이즈를 이동 평균(Moving Average) 필터로 직접 구현해 측정 오차 최소화',
-      'KC 인증 및 EMC(EMI/EMS) 규격 시험을 통과해 제품 신뢰성 확보',
-      '지속 가능한 생산·유지보수를 위한 전체 개발 프로세스 기술 문서화',
-    ],
-    tech: 'OpenCV, Arduino C++',
-    link: '',
+    description: 'ESP32와 초음파·적외선 센서를 활용한 비접촉식 발열 체크 및 출입 관리 시스템.',
+    result: '하드웨어부터 펌웨어·인증·판매까지 주도해 식당 3곳에 총 300만 원 규모로 판매했습니다.',
+    tech: 'ESP32, Arduino C++, OpenCV',
   },
-]
-
-const education = [
-  { school: '대림대학교', period: '2024.03 - 2027.02 (졸업 예정)', major: '컴퓨터정보학부' },
-  { school: '삼일공업고등학교', period: '2017.03 - 2020.02 (졸업)', major: '정보통신학과' },
+  {
+    name: '음성인식 키오스크',
+    period: '2020.09 - 2021.07',
+    description: '사용자 시나리오 기반 기능·예외 테스트와 하드웨어 점검을 수행한 키오스크 QA 프로젝트.',
+    result: '현장 QA와 운영 오류 수정, World IT Show 설치·시연 및 현장 대응까지 담당했습니다.',
+    tech: 'C++, Windows, Hardware QA',
+  },
+  {
+    name: '사내 인트라넷',
+    period: '2020.09 - 2020.10',
+    description: '사내 구성원이 사용하는 게시판의 목록·등록·수정·상세 화면을 구현한 웹 프로젝트.',
+    result: 'eGovFrame 환경에서 화면부터 데이터 연동까지 게시판 기능 전반을 개발했습니다.',
+    tech: 'Java, JSP, eGovFrame, JavaScript, MySQL',
+  },
+  {
+    name: '카페 모바일 앱',
+    period: '2021.01 - 2021.02',
+    description: '카페 이용 흐름을 모바일 화면으로 구현한 Android 애플리케이션.',
+    result: 'UI 구성과 화면 전환, 사용자 이벤트 처리를 중심으로 애플리케이션을 개발했습니다.',
+    tech: 'Java, Android Studio, MySQL',
+  },
 ]
 
 const certifications = [
@@ -61,7 +70,7 @@ const certifications = [
 const aiTools = ['Claude Code', 'Codex', 'ChatGPT']
 
 const journey = [
-  { period: '2014 - 2017', title: '서호중학교', detail: '정보통신 분야에 대한 관심을 키움' },
+  { period: '2014 - 2017', title: '서호중학교' },
   { period: '2017 - 2020', title: '삼일공업고등학교', detail: '정보통신과 · 기술의 기본기를 쌓음' },
   { period: '2019 - 2021', title: '(주)날다', detail: '개발부 주임 · 현장에서 제품을 만들고 운영' },
   { period: '군 복무', title: '대한민국 육군', detail: '행정병 · 병장 만기 전역' },
@@ -91,10 +100,10 @@ function App() {
           <p className="journey-label">MY JOURNEY</p>
           <ol>
             {journey.map((item) => (
-              <li key={item.title}>
+              <li className={item.detail ? undefined : 'compact'} key={item.title}>
                 <span className="journey-period">{item.period}</span>
                 <strong>{item.title}</strong>
-                <span>{item.detail}</span>
+                {item.detail && <span>{item.detail}</span>}
               </li>
             ))}
           </ol>
@@ -120,36 +129,22 @@ function App() {
 
       <section id="projects">
         <h2>프로젝트</h2>
-        {projects.map((proj) => (
-          <article className="project-card" key={proj.name}>
-            <p className="project-kicker">FEATURED PROJECT</p>
-            <div className="article-heading">
-              <h3>
-                {proj.link ? <a href={proj.link} target="_blank" rel="noreferrer">{proj.name}</a> : proj.name}
-              </h3>
-              <p className="period">{proj.period}</p>
-            </div>
-            <p>{proj.description}</p>
-            <ul>
-              {proj.highlights.map((h) => (
-                <li key={h}>{h}</li>
-              ))}
-            </ul>
-            <div className="tag-list" aria-label="사용 기술">
-              {proj.tech.split(', ').map((tech) => <span key={tech}>{tech}</span>)}
-            </div>
-          </article>
-        ))}
-      </section>
-
-      <section id="education">
-        <h2>학력</h2>
-        {education.map((edu) => (
-          <article key={edu.school}>
-            <h3>{edu.school}</h3>
-            <p className="period">{edu.period} · {edu.major}</p>
-          </article>
-        ))}
+        <div className="project-grid">
+          {projects.map((proj, index) => (
+            <article className="project-card" key={proj.name}>
+              <div className="project-meta">
+                <span>0{index + 1}</span>
+                <span>{proj.period}</span>
+              </div>
+              <h3>{proj.name}</h3>
+              <p>{proj.description}</p>
+              <p className="project-result">{proj.result}</p>
+              <div className="tag-list" aria-label="사용 기술">
+                {proj.tech.split(', ').map((tech) => <span key={tech}>{tech}</span>)}
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section id="ai-tools">
