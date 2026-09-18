@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import './App.css'
 
 const profile = {
@@ -97,6 +98,15 @@ const sections = [
 ]
 
 function App() {
+  const projectGrid = useRef(null)
+
+  const scrollProjects = (direction) => {
+    const card = projectGrid.current?.querySelector('.project-card')
+    if (!card) return
+    const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+    projectGrid.current.scrollBy({ left: direction * (card.offsetWidth + 16), behavior })
+  }
+
   return (
     <main>
       <nav className="dot-nav" aria-label="섹션 이동">
@@ -156,8 +166,14 @@ function App() {
 
       <section id="projects">
         <h2>프로젝트</h2>
-        <p className="section-lead">{projects.length}개의 프로젝트 · 옆으로 넘겨서 살펴보세요</p>
-        <div className="project-grid">
+        <div className="project-toolbar">
+          <p className="section-lead">{projects.length}개의 프로젝트</p>
+          <div className="project-controls" aria-label="프로젝트 카드 이동">
+            <button type="button" onClick={() => scrollProjects(-1)} aria-label="이전 프로젝트">←</button>
+            <button type="button" onClick={() => scrollProjects(1)} aria-label="다음 프로젝트">→</button>
+          </div>
+        </div>
+        <div className="project-grid" ref={projectGrid}>
           {projects.map((proj, index) => (
             <article className="project-card" key={proj.name}>
               <div className="project-meta">
