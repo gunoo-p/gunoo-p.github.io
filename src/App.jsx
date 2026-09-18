@@ -17,11 +17,11 @@ const experiences = [
     period: '2019.12 - 2021.09 (1년 10개월)',
     title: '개발부 주임',
     highlights: [
-      '음성인식 키오스크 QA 및 유지관리 (2020.09-2021.07): 사용자 시나리오 기반 기능/예외 테스트, 하드웨어(전원·센서) 점검 및 재연결, 현장 QA, 운영 중 발견된 오류 직접 수정 — C++, Windows',
-      '사내 인트라넷 프론트엔드 개발 (2020.09-2020.10): JSP·eGovFrame 기반 게시판(BBS) 목록/등록/수정/상세 화면 구현 — Java, JSP, HTML, CSS, JavaScript, eGovFrame, MySQL',
-      '카페 모바일 애플리케이션 개발 (2021.01-2021.02): Android Studio 기반 UI 및 화면 전환/이벤트 처리 구현 — Java, MySQL',
-      '2021 World IT Show(COEX) 전시 참여 (2021.04): 음성인식 키오스크 설치·시연 환경 구축, 방문객 대상 시연 및 현장 이슈 대응',
-      '비접촉 온도측정기 개발 (2021.06-2021.07): ESP32 기반 하드웨어·펌웨어 개발부터 상용 판매까지 전 과정 주도 — OpenCV, Arduino C++ (상세 내용은 아래 프로젝트 참고)',
+      { title: '음성인식 키오스크 QA · 유지관리', period: '2020.09–2021.07', description: '사용자 시나리오 기반 기능·예외 테스트, 전원·센서 점검과 현장 오류 수정.', tech: 'C++ · Windows' },
+      { title: '사내 인트라넷 프론트엔드 개발', period: '2020.09–2020.10', description: '게시판 목록·등록·수정·상세 화면 구현.', tech: 'Java · JSP · HTML · CSS · JavaScript · eGovFrame · MySQL' },
+      { title: '카페 모바일 앱 개발', period: '2021.01–2021.02', description: 'Android UI 구성과 화면 전환, 사용자 이벤트 처리.', tech: 'Java · Android Studio · MySQL' },
+      { title: 'World IT Show 전시 참여', period: '2021.04', description: 'COEX 키오스크 설치·시연 환경 구축, 방문객 시연 및 현장 이슈 대응.' },
+      { title: '비접촉 온도측정기 개발', period: '2021.06–2021.07', description: 'ESP32 기반 하드웨어·펌웨어 개발부터 상용 판매까지 전 과정 주도.', tech: 'ESP32 · OpenCV · Arduino C++' },
     ],
   },
 ]
@@ -83,8 +83,6 @@ const certifications = [
   { name: '워드프로세서', date: '2017.07' },
 ]
 
-const aiTools = ['Claude Code', 'Codex', 'ChatGPT']
-
 const journey = [
   { period: '2014 - 2017', title: '서호중학교' },
   { period: '2017 - 2020', title: '삼일공업고등학교', detail: '정보통신과 · 기술의 기본기를 쌓음' },
@@ -96,8 +94,7 @@ const journey = [
 const sections = [
   { href: '#intro', label: '인트로' },
   { href: '#experience', label: '경력' },
-  { href: '#projects', label: '프로젝트' },
-  { href: '#ai-tools', label: 'AI 활용' },
+  { href: '#projects', label: '경험한 프로젝트' },
   { href: '#certifications', label: '자격증' },
   { href: '#contact', label: '연락처' },
 ]
@@ -159,14 +156,19 @@ function App() {
       <section id="experience">
         <h2>경력</h2>
         {experiences.map((exp) => (
-          <article key={exp.company + exp.period}>
-            <div className="article-heading">
-              <h3>{exp.title} · {exp.company}</h3>
+          <article className="experience-layout" key={exp.company + exp.period}>
+            <div className="experience-summary">
+              <h3>{exp.company}</h3>
+              <p className="experience-role">{exp.title}</p>
               <p className="period">{exp.period}</p>
             </div>
-            <ul>
+            <ul className="experience-list">
               {exp.highlights.map((h) => (
-                <li key={h}>{h}</li>
+                <li key={h.title}>
+                  <div className="experience-item-heading"><h4>{h.title}</h4><span>{h.period}</span></div>
+                  <p>{h.description}</p>
+                  {h.tech && <p className="experience-tech">{h.tech}</p>}
+                </li>
               ))}
             </ul>
           </article>
@@ -174,7 +176,7 @@ function App() {
       </section>
 
       <section id="projects">
-        <h2>프로젝트</h2>
+        <h2>경험한 프로젝트</h2>
         <div className="project-grid">
           {projects.map((proj) => (
             <article className="project-card" key={proj.name}>
@@ -199,30 +201,9 @@ function App() {
         </div>
       </section>
 
-      <section id="ai-tools">
-        <h2>AI 활용 경험</h2>
-        <p className="ai-headline">개발 도구에서,<br />제품의 기능까지.</p>
-        <div className="ai-examples">
-          <article>
-            <p className="eyebrow">개발 과정</p>
-            <h3>AI와 함께 구현하는 개발</h3>
-            <p>Claude Code 등 AI 도구를 활용해 개발 생산성을 높이고 있습니다.</p>
-          </article>
-          <article>
-            <p className="eyebrow">제품 적용</p>
-            <h3>센서 로그를 읽기 쉬운 요약으로</h3>
-            <p>클린룸 대시보드에 Claude API를 연결해 하루치 환경 로그를 자연어로 요약하는 기능을 구현했습니다.</p>
-            <a href="https://github.com/gunoo-p/cleanroom-dashboard" target="_blank" rel="noreferrer">프로젝트 살펴보기 ↗</a>
-          </article>
-        </div>
-        <div className="tag-list">
-          {aiTools.map((tool) => <span key={tool}>{tool}</span>)}
-        </div>
-      </section>
-
       <section id="certifications">
         <h2>자격증</h2>
-        <p className="section-lead">기술 기반을 꾸준히 넓혀온 {certifications.length}개의 자격</p>
+        <p className="section-lead">총 {certifications.length}개 · 최근 취득순</p>
         <ul className="cert-list">
           {certifications.map((cert) => (
             <li key={cert.name}>
