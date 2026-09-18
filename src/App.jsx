@@ -161,28 +161,23 @@ function App() {
 
       <section id="projects">
         <h2>프로젝트</h2>
-        <p className="section-lead">항목을 누르면 자세한 내용이 열립니다</p>
-        <div className="project-list">
+        <div className="project-grid">
           {projects.map((proj) => (
-            <details className="project-item" key={proj.name}>
-              <summary>
-                <div className="project-name">
-                  <h3>{proj.name}</h3>
-                  <span className="project-kind">{proj.kind}</span>
-                </div>
-                <div className="tag-list">
-                  {proj.tech.split(', ').map((tech) => <span key={tech}>{tech}</span>)}
-                </div>
-              </summary>
-              <div className="project-body">
-                <p>{proj.description}</p>
-                <p className="project-result">{proj.result}</p>
-                <p className="period">
-                  {proj.period}
-                  {proj.link && <> · <a href={proj.link} target="_blank" rel="noreferrer">GitHub ↗</a></>}
-                </p>
+            <article className="project-card" key={proj.name}>
+              <div className="project-meta">
+                <span>{proj.kind}</span>
+                <span>{proj.period}</span>
               </div>
-            </details>
+              <h3>{proj.name}</h3>
+              <p>{proj.description}</p>
+              <p className="project-result">{proj.result}</p>
+              <div className="tag-list">
+                {proj.tech.split(', ').map((tech) => <span key={tech}>{tech}</span>)}
+              </div>
+              {proj.link && (
+                <a className="project-link" href={proj.link} target="_blank" rel="noreferrer">GitHub ↗</a>
+              )}
+            </article>
           ))}
         </div>
       </section>
