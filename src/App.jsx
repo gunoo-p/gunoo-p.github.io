@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react'
 import './App.css'
 
 const profile = {
@@ -29,6 +28,7 @@ const experiences = [
 const projects = [
   {
     name: '반도체 클린룸 모니터링 대시보드',
+    kind: 'IoT · 웹 대시보드',
     period: '2026.07',
     description:
       'ESP32 센서(온도·습도·차압·가스·공기질)로 반도체 클린룸 환경을 실시간 모니터링하고, 추세 기반 설비 이상 예측과 과거 이벤트 로그를 보여주는 웹 대시보드.',
@@ -39,6 +39,7 @@ const projects = [
   },
   {
     name: '비접촉 온도측정기',
+    kind: '하드웨어 제품',
     period: '2021.06 - 2021.07',
     description: 'ESP32와 초음파·적외선 센서를 활용한 비접촉식 발열 체크 및 출입 관리 시스템.',
     result: '하드웨어부터 펌웨어·인증·판매까지 주도해 식당 3곳에 총 300만 원 규모로 판매했습니다.',
@@ -46,6 +47,7 @@ const projects = [
   },
   {
     name: '음성인식 키오스크',
+    kind: 'QA · 유지보수',
     period: '2020.09 - 2021.07',
     description: '사용자 시나리오 기반 기능·예외 테스트와 하드웨어 점검을 수행한 키오스크 QA 프로젝트.',
     result: '현장 QA와 운영 오류 수정, World IT Show 설치·시연 및 현장 대응까지 담당했습니다.',
@@ -53,6 +55,7 @@ const projects = [
   },
   {
     name: '사내 인트라넷',
+    kind: '웹 게시판',
     period: '2020.09 - 2020.10',
     description: '사내 구성원이 사용하는 게시판의 목록·등록·수정·상세 화면을 구현한 웹 프로젝트.',
     result: 'eGovFrame 환경에서 화면부터 데이터 연동까지 게시판 기능 전반을 개발했습니다.',
@@ -60,6 +63,7 @@ const projects = [
   },
   {
     name: '카페 모바일 앱',
+    kind: 'Android 앱',
     period: '2021.01 - 2021.02',
     description: '카페 이용 흐름을 모바일 화면으로 구현한 Android 애플리케이션.',
     result: 'UI 구성과 화면 전환, 사용자 이벤트 처리를 중심으로 애플리케이션을 개발했습니다.',
@@ -97,55 +101,7 @@ const sections = [
   { href: '#contact', label: '연락처' },
 ]
 
-const carouselProjects = [...projects, ...projects.slice(0, 3)]
-
 function App() {
-  const projectGrid = useRef(null)
-  const wheelLock = useRef(0)
-  const resetTimer = useRef(null)
-
-  const scrollProjects = (direction) => {
-    const grid = projectGrid.current
-    const card = grid?.querySelector('.project-card')
-    if (!card) return
-
-    const step = card.offsetWidth + 16
-    let current = Math.round(grid.scrollLeft / step)
-    const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
-
-    if (direction < 0 && current === 0) {
-      grid.scrollTo({ left: projects.length * step, behavior: 'auto' })
-      current = projects.length
-    } else if (direction > 0 && current >= projects.length) {
-      grid.scrollTo({ left: 0, behavior: 'auto' })
-      current = 0
-    }
-
-    const next = current + direction
-    grid.scrollTo({ left: next * step, behavior })
-    window.clearTimeout(resetTimer.current)
-    if (next === projects.length) {
-      resetTimer.current = window.setTimeout(() => grid.scrollTo({ left: 0, behavior: 'auto' }), 400)
-    }
-  }
-
-  useEffect(() => {
-    const grid = projectGrid.current
-    const handleWheel = (event) => {
-      event.preventDefault()
-      const now = Date.now()
-      if (now - wheelLock.current < 320) return
-      wheelLock.current = now
-      scrollProjects((event.deltaX || event.deltaY) > 0 ? 1 : -1)
-    }
-
-    grid.addEventListener('wheel', handleWheel, { passive: false })
-    return () => {
-      grid.removeEventListener('wheel', handleWheel)
-      window.clearTimeout(resetTimer.current)
-    }
-  }, [])
-
   return (
     <main>
       <nav className="dot-nav" aria-label="섹션 이동">
@@ -205,36 +161,29 @@ function App() {
 
       <section id="projects">
         <h2>프로젝트</h2>
-        <div className="project-toolbar">
-          <p className="section-lead">{projects.length}개의 프로젝트</p>
-        </div>
-        <div className="project-carousel">
-          <button className="project-arrow previous" type="button" onClick={() => scrollProjects(-1)} aria-label="이전 프로젝트">←</button>
-          <div className="project-grid" ref={projectGrid}>
-            {carouselProjects.map((proj, index) => {
-              const duplicate = index >= projects.length
-              return (
-                <article className="project-card" aria-hidden={duplicate || undefined} key={`${proj.name}-${index}`}>
-                  <div className="project-meta">
-                    <span>{String((index % projects.length) + 1).padStart(2, '0')}</span>
-                    <span>{proj.period}</span>
-                  </div>
+        <p className="section-lead">항목을 누르면 자세한 내용이 열립니다</p>
+        <div className="project-list">
+          {projects.map((proj) => (
+            <details className="project-item" key={proj.name}>
+              <summary>
+                <div className="project-name">
                   <h3>{proj.name}</h3>
-                  <p>{proj.description}</p>
-                  <p className="project-result">{proj.result}</p>
-                  <div className="tag-list" aria-label="사용 기술">
-                    {proj.tech.split(', ').map((tech) => <span key={tech}>{tech}</span>)}
-                  </div>
-                  {proj.link && (
-                    <a className="project-link" href={proj.link} target="_blank" rel="noreferrer" tabIndex={duplicate ? -1 : undefined}>
-                      GitHub ↗
-                    </a>
-                  )}
-                </article>
-              )
-            })}
-          </div>
-          <button className="project-arrow next" type="button" onClick={() => scrollProjects(1)} aria-label="다음 프로젝트">→</button>
+                  <span className="project-kind">{proj.kind}</span>
+                </div>
+                <div className="tag-list">
+                  {proj.tech.split(', ').map((tech) => <span key={tech}>{tech}</span>)}
+                </div>
+              </summary>
+              <div className="project-body">
+                <p>{proj.description}</p>
+                <p className="project-result">{proj.result}</p>
+                <p className="period">
+                  {proj.period}
+                  {proj.link && <> · <a href={proj.link} target="_blank" rel="noreferrer">GitHub ↗</a></>}
+                </p>
+              </div>
+            </details>
+          ))}
         </div>
       </section>
 
