@@ -27,6 +27,16 @@ const experiences = [
 
 const projects = [
   {
+    name: '반도체 클린룸 모니터링 대시보드',
+    period: '2026.07',
+    description:
+      'ESP32 센서(온도·습도·차압·가스·공기질)로 반도체 클린룸 환경을 실시간 모니터링하고, 추세 기반 설비 이상 예측과 과거 이벤트 로그를 보여주는 웹 대시보드.',
+    result:
+      '임계치 초과 시 텔레그램 알림, 하루치 로그는 Claude API로 자연어 요약까지 받아보도록 펌웨어부터 백엔드·프론트엔드까지 직접 구축했습니다.',
+    tech: 'ESP32, FastAPI, TimescaleDB, MQTT, React, Docker, Claude API',
+    link: 'https://github.com/gunoo-p/cleanroom-dashboard',
+  },
+  {
     name: '비접촉 온도측정기',
     period: '2021.06 - 2021.07',
     description: 'ESP32와 초음파·적외선 센서를 활용한 비접촉식 발열 체크 및 출입 관리 시스템.',
@@ -160,6 +170,11 @@ function App() {
               <div className="tag-list" aria-label="사용 기술">
                 {proj.tech.split(', ').map((tech) => <span key={tech}>{tech}</span>)}
               </div>
+              {proj.link && (
+                <a className="project-link" href={proj.link} target="_blank" rel="noreferrer">
+                  GitHub ↗
+                </a>
+              )}
             </article>
           ))}
         </div>
