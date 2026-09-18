@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import './App.css'
 
 const profile = {
@@ -97,15 +97,54 @@ const sections = [
   { href: '#contact', label: '연락처' },
 ]
 
+const carouselProjects = [...projects, ...projects.slice(0, 3)]
+
 function App() {
   const projectGrid = useRef(null)
+  const wheelLock = useRef(0)
+  const resetTimer = useRef(null)
 
   const scrollProjects = (direction) => {
-    const card = projectGrid.current?.querySelector('.project-card')
+    const grid = projectGrid.current
+    const card = grid?.querySelector('.project-card')
     if (!card) return
+
+    const step = card.offsetWidth + 16
+    let current = Math.round(grid.scrollLeft / step)
     const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
-    projectGrid.current.scrollBy({ left: direction * (card.offsetWidth + 16), behavior })
+
+    if (direction < 0 && current === 0) {
+      grid.scrollTo({ left: projects.length * step, behavior: 'auto' })
+      current = projects.length
+    } else if (direction > 0 && current >= projects.length) {
+      grid.scrollTo({ left: 0, behavior: 'auto' })
+      current = 0
+    }
+
+    const next = current + direction
+    grid.scrollTo({ left: next * step, behavior })
+    window.clearTimeout(resetTimer.current)
+    if (next === projects.length) {
+      resetTimer.current = window.setTimeout(() => grid.scrollTo({ left: 0, behavior: 'auto' }), 400)
+    }
   }
+
+  useEffect(() => {
+    const grid = projectGrid.current
+    const handleWheel = (event) => {
+      event.preventDefault()
+      const now = Date.now()
+      if (now - wheelLock.current < 320) return
+      wheelLock.current = now
+      scrollProjects((event.deltaX || event.deltaY) > 0 ? 1 : -1)
+    }
+
+    grid.addEventListener('wheel', handleWheel, { passive: false })
+    return () => {
+      grid.removeEventListener('wheel', handleWheel)
+      window.clearTimeout(resetTimer.current)
+    }
+  }, [])
 
   return (
     <main>
@@ -168,31 +207,34 @@ function App() {
         <h2>프로젝트</h2>
         <div className="project-toolbar">
           <p className="section-lead">{projects.length}개의 프로젝트</p>
-          <div className="project-controls" aria-label="프로젝트 카드 이동">
-            <button type="button" onClick={() => scrollProjects(-1)} aria-label="이전 프로젝트">←</button>
-            <button type="button" onClick={() => scrollProjects(1)} aria-label="다음 프로젝트">→</button>
-          </div>
         </div>
-        <div className="project-grid" ref={projectGrid}>
-          {projects.map((proj, index) => (
-            <article className="project-card" key={proj.name}>
-              <div className="project-meta">
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <span>{proj.period}</span>
-              </div>
-              <h3>{proj.name}</h3>
-              <p>{proj.description}</p>
-              <p className="project-result">{proj.result}</p>
-              <div className="tag-list" aria-label="사용 기술">
-                {proj.tech.split(', ').map((tech) => <span key={tech}>{tech}</span>)}
-              </div>
-              {proj.link && (
-                <a className="project-link" href={proj.link} target="_blank" rel="noreferrer">
-                  GitHub ↗
-                </a>
-              )}
-            </article>
-          ))}
+        <div className="project-carousel">
+          <button className="project-arrow previous" type="button" onClick={() => scrollProjects(-1)} aria-label="이전 프로젝트">←</button>
+          <div className="project-grid" ref={projectGrid}>
+            {carouselProjects.map((proj, index) => {
+              const duplicate = index >= projects.length
+              return (
+                <article className="project-card" aria-hidden={duplicate || undefined} key={`${proj.name}-${index}`}>
+                  <div className="project-meta">
+                    <span>{String((index % projects.length) + 1).padStart(2, '0')}</span>
+                    <span>{proj.period}</span>
+                  </div>
+                  <h3>{proj.name}</h3>
+                  <p>{proj.description}</p>
+                  <p className="project-result">{proj.result}</p>
+                  <div className="tag-list" aria-label="사용 기술">
+                    {proj.tech.split(', ').map((tech) => <span key={tech}>{tech}</span>)}
+                  </div>
+                  {proj.link && (
+                    <a className="project-link" href={proj.link} target="_blank" rel="noreferrer" tabIndex={duplicate ? -1 : undefined}>
+                      GitHub ↗
+                    </a>
+                  )}
+                </article>
+              )
+            })}
+          </div>
+          <button className="project-arrow next" type="button" onClick={() => scrollProjects(1)} aria-label="다음 프로젝트">→</button>
         </div>
       </section>
 
