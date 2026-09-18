@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import './App.css'
 
 const profile = {
@@ -102,12 +103,25 @@ const sections = [
 ]
 
 function App() {
+  const [activeSection, setActiveSection] = useState('#intro')
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) setActiveSection(`#${entry.target.id}`)
+      })
+    }, { rootMargin: '-10% 0px -85% 0px', threshold: 0 })
+    sections.forEach(({ href }) => observer.observe(document.querySelector(href)))
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <main>
       <nav className="dot-nav" aria-label="섹션 이동">
         {sections.map((s) => (
-          <a key={s.href} href={s.href} aria-label={s.label}>
-            <span />
+          <a key={s.href} href={s.href} aria-label={s.label} aria-current={activeSection === s.href ? 'location' : undefined}>
+            <span className="nav-label">{s.label}</span>
+            <span className="nav-dot" />
           </a>
         ))}
       </nav>
@@ -169,8 +183,11 @@ function App() {
                 <span>{proj.period}</span>
               </div>
               <h3>{proj.name}</h3>
-              <p>{proj.description}</p>
               <p className="project-result">{proj.result}</p>
+              <details className="project-details">
+                <summary>프로젝트 개요</summary>
+                <p>{proj.description}</p>
+              </details>
               <div className="tag-list">
                 {proj.tech.split(', ').map((tech) => <span key={tech}>{tech}</span>)}
               </div>
@@ -184,6 +201,20 @@ function App() {
 
       <section id="ai-tools">
         <h2>AI 활용 경험</h2>
+        <p className="ai-headline">개발 도구에서,<br />제품의 기능까지.</p>
+        <div className="ai-examples">
+          <article>
+            <p className="eyebrow">개발 과정</p>
+            <h3>AI와 함께 구현하는 개발</h3>
+            <p>Claude Code 등 AI 도구를 활용해 개발 생산성을 높이고 있습니다.</p>
+          </article>
+          <article>
+            <p className="eyebrow">제품 적용</p>
+            <h3>센서 로그를 읽기 쉬운 요약으로</h3>
+            <p>클린룸 대시보드에 Claude API를 연결해 하루치 환경 로그를 자연어로 요약하는 기능을 구현했습니다.</p>
+            <a href="https://github.com/gunoo-p/cleanroom-dashboard" target="_blank" rel="noreferrer">프로젝트 살펴보기 ↗</a>
+          </article>
+        </div>
         <div className="tag-list">
           {aiTools.map((tool) => <span key={tool}>{tool}</span>)}
         </div>
@@ -195,7 +226,7 @@ function App() {
         <ul className="cert-list">
           {certifications.map((cert) => (
             <li key={cert.name}>
-              <time dateTime={cert.date}>{cert.date}</time>
+              <time dateTime={cert.date.replace('.', '-')}>{cert.date}</time>
               <strong>{cert.name}</strong>
             </li>
           ))}
