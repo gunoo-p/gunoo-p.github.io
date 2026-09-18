@@ -174,10 +174,12 @@ function App() {
 
       <section id="certifications">
         <h2>자격증</h2>
+        <p className="section-lead">기술 기반을 꾸준히 넓혀온 {certifications.length}개의 자격</p>
         <ul className="cert-list">
           {certifications.map((cert) => (
             <li key={cert.name}>
-              {cert.name} <span className="period">({cert.date})</span>
+              <time dateTime={cert.date}>{cert.date}</time>
+              <strong>{cert.name}</strong>
             </li>
           ))}
         </ul>
