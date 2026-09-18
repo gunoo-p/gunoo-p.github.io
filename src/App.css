@@ -391,6 +391,44 @@ article .experience-list li:last-child { border-bottom: 0; padding-bottom: 0; }
   line-height: 1.65;
 }
 
+.sensor-flow {
+  margin: 12px 0 8px;
+  padding: 14px 10px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+}
+
+.sensor-flow figcaption {
+  font-size: 11px;
+}
+
+.sensor-flow-stages {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.sensor-stage { position: relative; min-width: 0; text-align: center; }
+.sensor-stage span { display: block; font-size: 11px; line-height: 1.5; color: var(--text-h); }
+.sensor-stage svg { display: block; width: 100%; height: 40px; fill: none; stroke: var(--accent); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.sensor-stage .sensor-connector { position: absolute; left: -14px; top: 12px; color: var(--text); font-size: 12px; }
+.flow-icon { animation: sensor-draw 900ms ease-out both; }
+.qa-check-box { stroke: var(--accent-border); fill: var(--accent-bg); }
+
+.sensor-flow[data-visible="false"] .flow-icon { animation: none; }
+
+@keyframes sensor-draw {
+  from { stroke-dasharray: 1; stroke-dashoffset: 1; }
+  to { stroke-dasharray: 1; stroke-dashoffset: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow-icon { animation: none; }
+}
+
 .project-details summary {
   cursor: pointer;
   color: var(--accent);

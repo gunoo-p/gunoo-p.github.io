@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 
 const profile = {
@@ -18,8 +18,8 @@ const experiences = [
     title: '개발부 주임',
     highlights: [
       { title: '음성인식 키오스크 QA · 유지관리', period: '2020.09–2021.07', description: '사용자 시나리오 기반 기능·예외 테스트, 전원·센서 점검과 현장 오류 수정.', tech: 'C++ · Windows' },
-      { title: '사내 인트라넷 프론트엔드 개발', period: '2020.09–2020.10', description: '게시판 목록·등록·수정·상세 화면 구현.', tech: 'Java · JSP · HTML · CSS · JavaScript · eGovFrame · MySQL' },
-      { title: '카페 모바일 앱 개발', period: '2021.01–2021.02', description: 'Android UI 구성과 화면 전환, 사용자 이벤트 처리.', tech: 'Java · Android Studio · MySQL' },
+      { title: '사내 인트라넷 프론트엔드 개발', period: '2020.09–2020.10', description: '게시판 목록·등록·수정·상세 화면 구현.', tech: 'JSP · HTML · CSS · JavaScript · eGovFrame' },
+      { title: '카페 모바일 앱 프론트엔드 개발', period: '2021.01–2021.02', description: 'Android UI 구성과 화면 전환, 사용자 입력 이벤트 처리.', tech: 'Java · Android Studio' },
       { title: 'World IT Show 전시 참여', period: '2021.04', description: 'COEX 키오스크 설치·시연 환경 구축, 방문객 시연 및 현장 이슈 대응.' },
       { title: '비접촉 온도측정기 개발', period: '2021.06–2021.07', description: 'ESP32 기반 하드웨어·펌웨어 개발부터 상용 판매까지 전 과정 주도.', tech: 'ESP32 · OpenCV · Arduino C++' },
     ],
@@ -29,6 +29,8 @@ const experiences = [
 const projects = [
   {
     name: '반도체 클린룸 모니터링 대시보드',
+    flowTitle: '센서 데이터 전달 과정',
+    flow: [['센서 수집', 'wave'], ['FastAPI', 'api'], ['대시보드', 'dashboard']],
     kind: 'IoT · 웹 대시보드',
     period: '2026.07',
     description:
@@ -40,6 +42,8 @@ const projects = [
   },
   {
     name: '비접촉 온도측정기',
+    flowTitle: '온도 측정 과정',
+    flow: [['온도 측정', 'thermometer'], ['노이즈 필터', 'filter'], ['LCD 표시', 'display']],
     kind: '하드웨어 제품',
     period: '2021.06 - 2021.07',
     description: 'ESP32와 초음파·적외선 센서를 활용한 비접촉식 발열 체크 및 출입 관리 시스템.',
@@ -48,6 +52,9 @@ const projects = [
   },
   {
     name: '음성인식 키오스크',
+    flowTitle: 'QA · 유지보수 업무',
+    flowMode: 'checklist',
+    flow: [['기능 테스트', 'check'], ['오류 수정', 'check'], ['현장 테스트', 'check']],
     kind: 'QA · 유지보수',
     period: '2020.09 - 2021.07',
     description: '사용자 시나리오 기반 기능·예외 테스트와 하드웨어 점검을 수행한 키오스크 QA 프로젝트.',
@@ -56,19 +63,23 @@ const projects = [
   },
   {
     name: '사내 인트라넷',
-    kind: '웹 게시판',
+    flowTitle: '게시판 프론트엔드 구현',
+    flow: [['게시글 목록', 'list'], ['작성·수정', 'edit'], ['상세 보기', 'document']],
+    kind: '웹 프론트엔드',
     period: '2020.09 - 2020.10',
-    description: '사내 구성원이 사용하는 게시판의 목록·등록·수정·상세 화면을 구현한 웹 프로젝트.',
-    result: 'eGovFrame 환경에서 화면부터 데이터 연동까지 게시판 기능 전반을 개발했습니다.',
-    tech: 'Java, JSP, eGovFrame, JavaScript, MySQL',
+    description: 'JSP·eGovFrame 환경에서 사내 게시판의 사용자 화면을 구현한 프론트엔드 프로젝트.',
+    result: '게시글 목록·등록·수정·상세 화면의 프론트엔드 구현을 담당했습니다.',
+    tech: 'JSP, HTML, CSS, JavaScript, eGovFrame',
   },
   {
     name: '카페 모바일 앱',
-    kind: 'Android 앱',
+    flowTitle: '모바일 프론트엔드 구현',
+    flow: [['화면 구성', 'phone'], ['사용자 입력', 'tap'], ['화면 전환', 'navigate']],
+    kind: 'Android 프론트엔드',
     period: '2021.01 - 2021.02',
-    description: '카페 이용 흐름을 모바일 화면으로 구현한 Android 애플리케이션.',
-    result: 'UI 구성과 화면 전환, 사용자 이벤트 처리를 중심으로 애플리케이션을 개발했습니다.',
-    tech: 'Java, Android Studio, MySQL',
+    description: 'Android Studio에서 카페 모바일 앱의 사용자 화면을 구현한 프론트엔드 프로젝트.',
+    result: '앱의 UI 구성과 화면 전환, 사용자 입력 이벤트 처리를 담당했습니다.',
+    tech: 'Java, Android Studio',
   },
 ]
 
@@ -98,6 +109,53 @@ const sections = [
   { href: '#certifications', label: '자격증' },
   { href: '#contact', label: '연락처' },
 ]
+
+const flowIcons = {
+  wave: 'M0 20H9L14 15L20 26L27 8L34 32L41 15L48 22L54 20H64',
+  api: 'M20 7H44Q49 7 49 12V28Q49 33 44 33H20Q15 33 15 28V12Q15 7 20 7M26 14L20 20L26 26M38 14L44 20L38 26M35 12L29 28',
+  dashboard: 'M14 5H50Q54 5 54 9V31Q54 35 50 35H14Q10 35 10 31V9Q10 5 14 5M10 12H54M18 28V23M26 28V18M34 28V21M42 28V16',
+  thermometer: 'M28 25V9A4 4 0 0 1 36 9V25A8 8 0 1 1 28 25M32 14V30M41 12H46M41 18H44',
+  filter: 'M7 12L12 8L17 16L22 10H28M36 12H57M7 28L12 24L17 32L22 26H28M36 28H57M32 5V35',
+  display: 'M12 6H52V30H12ZM27 30V35H37V30M20 16H26V23H20ZM31 16H37V23H31M43 15V17',
+  check: 'M24 20L30 26L41 14',
+  list: 'M11 5H53V35H11ZM11 12H53M18 19H21M26 19H46M18 25H21M26 25H46M18 31H21M26 31H40',
+  edit: 'M37 7H16V35H44V24M26 24L28 17L42 3L48 9L34 23L26 24M38 7L44 13M23 30H36',
+  document: 'M18 4H38L47 13V36H18ZM38 4V13H47M24 19H40M24 25H40M24 31H34',
+  phone: 'M24 3H40Q43 3 43 6V34Q43 37 40 37H24Q21 37 21 34V6Q21 3 24 3M28 7H36M26 13H38V23H26ZM29 31H35',
+  tap: 'M27 29V16A3 3 0 0 1 33 16V23L39 20L46 25L43 36H30L22 27ZM24 10A9 9 0 1 1 39 13',
+  navigate: 'M10 5H27V35H10ZM39 5H56V35H39ZM23 20H44M37 14L44 20L37 26',
+}
+
+function ProjectFlow({ steps, title, mode = 'flow' }) {
+  const figure = useRef(null)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      setVisible(entry.isIntersecting && entry.intersectionRatio >= 0.5)
+    }, { threshold: [0, 0.5] })
+    observer.observe(figure.current)
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <figure className="sensor-flow" ref={figure} data-visible={visible}>
+      <figcaption>{title}</figcaption>
+      <div className="sensor-flow-stages" role="img" aria-label={`${title}: ${steps.map(([label]) => label).join(mode === 'checklist' ? ', ' : ' → ')}`}>
+        {steps.map(([label, icon], index) => (
+          <div className="sensor-stage" key={label}>
+            {mode !== 'checklist' && index > 0 && <span className="sensor-connector" aria-hidden="true">→</span>}
+            <svg viewBox="0 0 64 40" aria-hidden="true">
+              {mode === 'checklist' && <rect className="qa-check-box" x="17" y="5" width="30" height="30" rx="8" />}
+              <path className="flow-icon" pathLength="1" d={flowIcons[icon]} style={{ animationDelay: `${index * 0.9}s` }} />
+            </svg>
+            <span>{label}</span>
+          </div>
+        ))}
+      </div>
+    </figure>
+  )
+}
 
 function App() {
   const [activeSection, setActiveSection] = useState('#intro')
@@ -185,6 +243,7 @@ function App() {
                 <span>{proj.period}</span>
               </div>
               <h3>{proj.name}</h3>
+              <ProjectFlow steps={proj.flow} title={proj.flowTitle} mode={proj.flowMode} />
               <p className="project-result">{proj.result}</p>
               <details className="project-details">
                 <summary>프로젝트 개요</summary>
