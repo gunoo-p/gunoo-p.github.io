@@ -77,9 +77,26 @@ const journey = [
   { period: '2024 - 2027', title: '대림대학교', detail: '컴퓨터정보학부 · 개발 역량을 확장하는 중' },
 ]
 
+const sections = [
+  { href: '#intro', label: '인트로' },
+  { href: '#experience', label: '경력' },
+  { href: '#projects', label: '프로젝트' },
+  { href: '#ai-tools', label: 'AI 활용' },
+  { href: '#certifications', label: '자격증' },
+  { href: '#contact', label: '연락처' },
+]
+
 function App() {
   return (
     <main>
+      <nav className="dot-nav" aria-label="섹션 이동">
+        {sections.map((s) => (
+          <a key={s.href} href={s.href} aria-label={s.label}>
+            <span />
+          </a>
+        ))}
+      </nav>
+
       <header id="intro">
         <div className="hero-copy">
           <div className="profile-row">
