@@ -392,13 +392,22 @@ article .experience-list li:last-child { border-bottom: 0; padding-bottom: 0; }
 
 .project-meta {
   display: flex;
-  flex-wrap: wrap;
+  align-items: baseline;
   justify-content: space-between;
-  gap: 16px;
+  gap: 12px;
   margin-bottom: 18px;
   color: var(--accent);
   font: 700 12px/1.4 var(--mono);
   letter-spacing: 0.04em;
+}
+
+.project-meta span:first-child {
+  min-width: 0;
+}
+
+.project-meta span:last-child {
+  flex: none;
+  white-space: nowrap;
 }
 
 .project-card h3 {
