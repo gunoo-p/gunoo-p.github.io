@@ -45,6 +45,7 @@ const projects = [
     flowMode: 'features',
     flow: [['메이크업 피드', 'phone'], ['화장품 탐색', 'search'], ['사진 공유', 'edit']],
     kind: '백엔드 메인 · DevOps',
+    period: '2026.03 - 2026.06',
     description: '퍼스널 컬러와 선호 스타일을 바탕으로 메이크업 피드와 화장품을 탐색하는 뷰티 커뮤니티 앱입니다.',
     tech: 'Flutter, Node.js, PostgreSQL, Docker',
     link: 'https://github.com/App-Legend/HUR',
