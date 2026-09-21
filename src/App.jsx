@@ -4,7 +4,8 @@ import './App.css'
 const profile = {
   name: '박건우',
   role: '소프트웨어 개발자',
-  email: 'gunwoo405@naver.com',
+  birthday: '2001-04-05',
+  email: 'gunoo0387@naver.com',
   github: 'https://github.com/gunoo-p',
   photo: '/profile.jpg',
   intro:
@@ -34,16 +35,28 @@ const projects = [
     kind: 'IoT · 웹 대시보드',
     period: '2026.07',
     description:
-      'ESP32 센서(온도·습도·차압·가스·공기질)로 반도체 클린룸 환경을 실시간 모니터링하고, 추세 기반 설비 이상 예측과 과거 이벤트 로그를 보여주는 웹 대시보드.',
+      'ESP32 센서(온도·습도·차압·가스·공기질)로 반도체 클린룸 환경을 실시간 모니터링하고, 추세 기반 설비 이상 예측과 과거 이벤트 로그를 보여주는 웹 대시보드. MQTT로 센서 데이터를 전달하고 TimescaleDB에 저장하며, Claude API로 로그를 요약합니다.',
     result:
       '임계치 초과 시 텔레그램 알림, 하루치 로그는 Claude API로 자연어 요약까지 받아보도록 펌웨어부터 백엔드·프론트엔드까지 직접 구축했습니다.',
-    tech: 'ESP32, FastAPI, TimescaleDB, MQTT, React, Docker, Claude API',
+    tech: 'ESP32, FastAPI, React, Docker',
     link: 'https://github.com/gunoo-p/cleanroom-dashboard',
   },
   {
+    name: 'HUR',
+    flowTitle: '나만의 뷰티 스타일 탐색',
+    flowMode: 'features',
+    flow: [['메이크업 피드', 'phone'], ['화장품 탐색', 'search'], ['사진 공유', 'edit']],
+    kind: '백엔드 메인 · DevOps',
+    description: '퍼스널 컬러와 선호 스타일을 바탕으로 메이크업 피드와 화장품을 탐색하는 뷰티 커뮤니티 앱입니다.',
+    result: '뷰티 커뮤니티 앱 HUR에서 백엔드 메인 개발과 DevOps를 담당했습니다.',
+    tech: 'Flutter, Node.js, PostgreSQL, Docker',
+    link: 'https://github.com/App-Legend/HUR',
+    plan: 'https://polished-jodhpur-0f6.notion.site/HUR-3dd68d782ff4807e82fdfe1801261b14',
+  },
+  {
     name: '비접촉 온도측정기',
-    flowTitle: '온도 측정 과정',
-    flow: [['온도 측정', 'thermometer'], ['노이즈 필터', 'filter'], ['LCD 표시', 'display']],
+    flowTitle: '비접촉 측정 · 동작 예시',
+    flowMode: 'temperature',
     kind: '하드웨어 제품',
     period: '2021.06 - 2021.07',
     description: 'ESP32와 초음파·적외선 센서를 활용한 비접촉식 발열 체크 및 출입 관리 시스템.',
@@ -54,7 +67,7 @@ const projects = [
     name: '음성인식 키오스크',
     flowTitle: 'QA · 유지보수 업무',
     flowMode: 'checklist',
-    flow: [['기능 테스트', 'check'], ['오류 수정', 'check'], ['현장 테스트', 'check']],
+    flow: [['기능 테스트', 'search'], ['오류 수정', 'tools'], ['현장 테스트', 'kiosk']],
     kind: 'QA · 유지보수',
     period: '2020.09 - 2021.07',
     description: '사용자 시나리오 기반 기능·예외 테스트와 하드웨어 점검을 수행한 키오스크 QA 프로젝트.',
@@ -64,22 +77,24 @@ const projects = [
   {
     name: '사내 인트라넷',
     flowTitle: '게시판 프론트엔드 구현',
+    flowMode: 'features',
     flow: [['게시글 목록', 'list'], ['작성·수정', 'edit'], ['상세 보기', 'document']],
     kind: '웹 프론트엔드',
     period: '2020.09 - 2020.10',
     description: 'JSP·eGovFrame 환경에서 사내 게시판의 사용자 화면을 구현한 프론트엔드 프로젝트.',
     result: '게시글 목록·등록·수정·상세 화면의 프론트엔드 구현을 담당했습니다.',
-    tech: 'JSP, HTML, CSS, JavaScript, eGovFrame',
+    tech: 'JSP, JavaScript, eGovFrame',
   },
   {
     name: '카페 모바일 앱',
     flowTitle: '모바일 프론트엔드 구현',
+    flowMode: 'features',
     flow: [['화면 구성', 'phone'], ['사용자 입력', 'tap'], ['화면 전환', 'navigate']],
     kind: 'Android 프론트엔드',
     period: '2021.01 - 2021.02',
     description: 'Android Studio에서 카페 모바일 앱의 사용자 화면을 구현한 프론트엔드 프로젝트.',
     result: '앱의 UI 구성과 화면 전환, 사용자 입력 이벤트 처리를 담당했습니다.',
-    tech: 'Java, Android Studio',
+    tech: 'Java',
   },
 ]
 
@@ -114,10 +129,9 @@ const flowIcons = {
   wave: 'M0 20H9L14 15L20 26L27 8L34 32L41 15L48 22L54 20H64',
   api: 'M20 7H44Q49 7 49 12V28Q49 33 44 33H20Q15 33 15 28V12Q15 7 20 7M26 14L20 20L26 26M38 14L44 20L38 26M35 12L29 28',
   dashboard: 'M14 5H50Q54 5 54 9V31Q54 35 50 35H14Q10 35 10 31V9Q10 5 14 5M10 12H54M18 28V23M26 28V18M34 28V21M42 28V16',
-  thermometer: 'M28 25V9A4 4 0 0 1 36 9V25A8 8 0 1 1 28 25M32 14V30M41 12H46M41 18H44',
-  filter: 'M7 12L12 8L17 16L22 10H28M36 12H57M7 28L12 24L17 32L22 26H28M36 28H57M32 5V35',
-  display: 'M12 6H52V30H12ZM27 30V35H37V30M20 16H26V23H20ZM31 16H37V23H31M43 15V17',
-  check: 'M24 20L30 26L41 14',
+  search: 'M35 8A11 11 0 1 1 19 24A11 11 0 0 1 35 8M36 25L46 35M22 18L26 22L33 14',
+  tools: 'M39 5A10 10 0 0 0 27 18L15 30A4 4 0 0 0 21 36L33 24A10 10 0 0 0 46 12L39 18L33 12Z',
+  kiosk: 'M20 3H44V29H20ZM24 8H40V21H24ZM28 29V35M36 29V35M24 36H40',
   list: 'M11 5H53V35H11ZM11 12H53M18 19H21M26 19H46M18 25H21M26 25H46M18 31H21M26 31H40',
   edit: 'M37 7H16V35H44V24M26 24L28 17L42 3L48 9L34 23L26 24M38 7L44 13M23 30H36',
   document: 'M18 4H38L47 13V36H18ZM38 4V13H47M24 19H40M24 25H40M24 31H34',
@@ -126,7 +140,7 @@ const flowIcons = {
   navigate: 'M10 5H27V35H10ZM39 5H56V35H39ZM23 20H44M37 14L44 20L37 26',
 }
 
-function ProjectFlow({ steps, title, mode = 'flow' }) {
+function ProjectFlow({ steps = [], title, mode = 'flow' }) {
   const figure = useRef(null)
   const [visible, setVisible] = useState(false)
 
@@ -141,24 +155,60 @@ function ProjectFlow({ steps, title, mode = 'flow' }) {
   return (
     <figure className="sensor-flow" ref={figure} data-visible={visible}>
       <figcaption>{title}</figcaption>
-      <div className="sensor-flow-stages" role="img" aria-label={`${title}: ${steps.map(([label]) => label).join(mode === 'checklist' ? ', ' : ' → ')}`}>
+      {mode === 'temperature' ? (
+        <svg className="temperature-scene" viewBox="0 0 250 96" role="img" aria-label="손이 센서에 다가오면 감지 신호가 나타나고 LCD에 예시 온도 36.5도가 표시됩니다">
+          <rect className="temperature-device" x="132" y="8" width="88" height="76" rx="12" />
+          <circle cx="142" cy="46" r="3" />
+          <rect className="temperature-screen" x="155" y="24" width="55" height="35" rx="5" />
+          <text className="temperature-reading" x="182" y="46" textAnchor="middle">36.5°C</text>
+          <text className="temperature-caption" x="182" y="74" textAnchor="middle">측정 예시</text>
+          <g className="temperature-signal"><path d="M123 35Q113 46 123 57M114 29Q99 46 114 63" /></g>
+          <g className="temperature-hand"><path d="M20 61H38L49 70H74Q81 70 84 62L91 46Q93 40 88 39Q84 38 81 44L77 49V26Q77 20 72 20Q67 20 67 26V43L62 36Q58 31 54 35L48 43H20Z" /></g>
+        </svg>
+      ) : (
+      <div className="sensor-flow-stages" role="img" aria-label={`${title}: ${steps.map(([label]) => label).join(mode === 'flow' ? ' → ' : ', ')}`}>
         {steps.map(([label, icon], index) => (
           <div className="sensor-stage" key={label}>
-            {mode !== 'checklist' && index > 0 && <span className="sensor-connector" aria-hidden="true">→</span>}
+            {mode === 'flow' && index > 0 && <span className="sensor-connector" aria-hidden="true">→</span>}
             <svg viewBox="0 0 64 40" aria-hidden="true">
-              {mode === 'checklist' && <rect className="qa-check-box" x="17" y="5" width="30" height="30" rx="8" />}
-              <path className="flow-icon" pathLength="1" d={flowIcons[icon]} style={{ animationDelay: `${index * 0.9}s` }} />
+              <path className={mode === 'checklist' ? undefined : 'flow-icon'} pathLength="1" d={flowIcons[icon]} style={{ animationDelay: `${index * 0.9}s` }} />
+              {mode === 'checklist' && (
+                <g className="qa-check-badge" style={{ animationDelay: `${0.5 + index * 0.7}s` }}>
+                  <circle cx="46" cy="10" r="8" />
+                  <path d="m42 10 3 3 5-6" />
+                </g>
+              )}
             </svg>
             <span>{label}</span>
           </div>
         ))}
       </div>
+      )}
     </figure>
   )
 }
 
 function App() {
   const [activeSection, setActiveSection] = useState('#intro')
+  const [projectPage, setProjectPage] = useState(0)
+  const [cardsPerPage, setCardsPerPage] = useState(() => window.matchMedia('(max-width: 800px)').matches ? 1 : 3)
+  const projectPages = Math.ceil(projects.length / cardsPerPage)
+  const currentPage = Math.min(projectPage, projectPages - 1)
+
+  useEffect(() => {
+    const media = window.matchMedia('(max-width: 800px)')
+    const resize = () => {
+      setCardsPerPage(media.matches ? 1 : 3)
+      setProjectPage(0)
+    }
+    media.addEventListener('change', resize)
+    return () => media.removeEventListener('change', resize)
+  }, [])
+  const today = new Date()
+  const [birthYear, birthMonth, birthDay] = profile.birthday.split('-').map(Number)
+  const birthdayPending = today.getMonth() + 1 < birthMonth ||
+    (today.getMonth() + 1 === birthMonth && today.getDate() < birthDay)
+  const age = today.getFullYear() - birthYear - Number(birthdayPending)
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -189,11 +239,11 @@ function App() {
               <p className="eyebrow">PORTFOLIO · 2026</p>
               <h1>{profile.name}</h1>
               <p className="role">{profile.role}</p>
+              <p className="profile-age"><time dateTime={profile.birthday}>2001.04.05</time> · 만 {age}세</p>
             </div>
           </div>
           <p className="intro-copy">{profile.intro}</p>
-          <nav aria-label="연락처">
-            <a className="contact-link primary" href={`mailto:${profile.email}`}>이메일 보내기</a>
+          <nav aria-label="외부 프로필">
             <a className="contact-link" href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a>
           </nav>
         </div>
@@ -235,12 +285,14 @@ function App() {
 
       <section id="projects">
         <h2>경험한 프로젝트</h2>
-        <div className="project-grid">
-          {projects.map((proj) => (
+        <div className="project-pages">
+        <button className="project-page-arrow previous" type="button" aria-label="이전 프로젝트 페이지" aria-controls="project-page" onClick={() => setProjectPage((currentPage - 1 + projectPages) % projectPages)}>←</button>
+        <div className="project-grid" id="project-page">
+          {projects.slice(currentPage * cardsPerPage, (currentPage + 1) * cardsPerPage).map((proj) => (
             <article className="project-card" key={proj.name}>
               <div className="project-meta">
                 <span>{proj.kind}</span>
-                <span>{proj.period}</span>
+                {proj.period && <span>{proj.period}</span>}
               </div>
               <h3>{proj.name}</h3>
               <ProjectFlow steps={proj.flow} title={proj.flowTitle} mode={proj.flowMode} />
@@ -252,12 +304,16 @@ function App() {
               <div className="tag-list">
                 {proj.tech.split(', ').map((tech) => <span key={tech}>{tech}</span>)}
               </div>
-              {proj.link && (
-                <a className="project-link" href={proj.link} target="_blank" rel="noreferrer">GitHub ↗</a>
-              )}
+              {(proj.link || proj.plan) && <div className="project-links">
+                {proj.link && <a className="project-link" href={proj.link} target="_blank" rel="noreferrer">GitHub ↗</a>}
+                {proj.plan && <a className="project-link" href={proj.plan} target="_blank" rel="noreferrer">기획서 ↗</a>}
+              </div>}
             </article>
           ))}
         </div>
+        <button className="project-page-arrow next" type="button" aria-label="다음 프로젝트 페이지" aria-controls="project-page" onClick={() => setProjectPage((currentPage + 1) % projectPages)}>→</button>
+        </div>
+        <p className="project-page-status" aria-live="polite">{currentPage + 1} / {projectPages} · 총 {projects.length}개 프로젝트</p>
       </section>
 
       <section id="certifications">
@@ -274,6 +330,7 @@ function App() {
       </section>
 
       <footer id="contact">
+        <h2>함께 만들어요.</h2>
         <p>함께 만들 일이 있다면 편하게 연락해 주세요.</p>
         <a href={`mailto:${profile.email}`}>{profile.email}</a>
       </footer>

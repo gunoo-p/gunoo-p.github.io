@@ -1,6 +1,6 @@
 #root {
   text-align: left;
-  padding: 0 28px 40px;
+  padding: 0 28px;
 }
 
 main {
@@ -267,6 +267,16 @@ article li::marker {
   font-weight: 550;
 }
 
+.profile-age {
+  margin-top: 8px;
+  color: var(--text);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.project-links { display: flex; flex-wrap: wrap; gap: 16px; }
+.project-links .project-link { display: inline-block; }
+
 section {
   counter-increment: section;
   display: flex;
@@ -347,6 +357,29 @@ article .experience-list li:last-child { border-bottom: 0; padding-bottom: 0; }
   gap: 16px;
 }
 
+#projects { padding-block: 40px; }
+.project-pages { position: relative; }
+.project-page-arrow {
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--accent);
+  box-shadow: var(--shadow);
+  font-size: 20px;
+  cursor: pointer;
+}
+.project-page-arrow.previous { left: -22px; }
+.project-page-arrow.next { right: -22px; }
+.project-page-arrow:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.project-page-status { margin-top: 20px; text-align: center; font-size: 13px; font-variant-numeric: tabular-nums; }
+#projects > .project-pages { animation: none; }
+
 .project-card {
   display: flex;
   flex-direction: column;
@@ -416,9 +449,27 @@ article .experience-list li:last-child { border-bottom: 0; padding-bottom: 0; }
 .sensor-stage svg { display: block; width: 100%; height: 40px; fill: none; stroke: var(--accent); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .sensor-stage .sensor-connector { position: absolute; left: -14px; top: 12px; color: var(--text); font-size: 12px; }
 .flow-icon { animation: sensor-draw 900ms ease-out both; }
-.qa-check-box { stroke: var(--accent-border); fill: var(--accent-bg); }
+.qa-check-badge { animation: check-appear 260ms var(--ease-out) both; transform-box: fill-box; transform-origin: center; }
+.qa-check-badge circle { fill: var(--accent); stroke: var(--bg); stroke-width: 2; }
+.qa-check-badge path { stroke: var(--bg); }
 
-.sensor-flow[data-visible="false"] .flow-icon { animation: none; }
+.temperature-scene { display: block; width: 100%; height: 82px; margin-top: 8px; fill: none; stroke: var(--accent); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.temperature-device { fill: var(--surface); stroke: var(--accent-border); }
+.temperature-screen { fill: var(--bg); stroke: var(--border); }
+.temperature-reading { fill: var(--accent); stroke: none; font: 700 12px var(--mono); animation: check-appear 300ms 1.9s both; }
+.temperature-caption { fill: var(--text); stroke: none; font: 9px var(--sans); }
+.temperature-hand { fill: var(--accent-bg); animation: hand-approach 1s var(--ease-out) both; }
+.temperature-signal { animation: sensor-detect 900ms 1s both; }
+
+@keyframes check-appear { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+@keyframes hand-approach { from { opacity: 0; transform: translateX(-15px); } to { opacity: 1; transform: translateX(8px); } }
+@keyframes sensor-detect { 0%, 40% { opacity: 0; } 20%, 60%, 100% { opacity: 1; } }
+
+.sensor-flow[data-visible="false"] .flow-icon,
+.sensor-flow[data-visible="false"] .qa-check-badge,
+.sensor-flow[data-visible="false"] .temperature-hand,
+.sensor-flow[data-visible="false"] .temperature-signal,
+.sensor-flow[data-visible="false"] .temperature-reading { animation: none; }
 
 @keyframes sensor-draw {
   from { stroke-dasharray: 1; stroke-dashoffset: 1; }
@@ -426,7 +477,7 @@ article .experience-list li:last-child { border-bottom: 0; padding-bottom: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .flow-icon { animation: none; }
+  .flow-icon, .qa-check-badge, .temperature-hand, .temperature-signal, .temperature-reading { animation: none; }
 }
 
 .project-details summary {
@@ -526,14 +577,21 @@ a {
 
 footer {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding-top: 24px;
+  justify-content: center;
+  gap: 20px;
+  min-height: 100svh;
+  box-sizing: border-box;
+  padding: 64px 0;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
   border-top: 1px solid var(--border);
   font-size: 14px;
-  margin: 48px 0 0;
+  text-align: center;
 }
+
+footer h2 { font-size: clamp(30px, 5vw, 48px); margin: 0; letter-spacing: -0.04em; }
 
 footer a {
   flex: none;
@@ -578,7 +636,7 @@ footer a {
 
 @media (max-width: 800px) {
   #root {
-    padding: 0 20px 24px;
+    padding: 0 20px;
   }
 
   header#intro {
@@ -606,8 +664,7 @@ footer a {
     border-radius: 22px;
   }
 
-  .article-heading,
-  footer {
+  .article-heading {
     align-items: flex-start;
     flex-direction: column;
     gap: 6px;
@@ -625,6 +682,9 @@ footer a {
     grid-template-columns: 1fr;
   }
 
+  .project-page-arrow.previous { left: -16px; }
+  .project-page-arrow.next { right: -16px; }
+
   .experience-layout { grid-template-columns: 1fr; gap: 28px; }
 
   section {
@@ -636,6 +696,11 @@ footer a {
     margin-bottom: 24px;
     font-size: 27px;
   }
+}
+
+@media (max-width: 800px), (max-height: 740px) {
+  html { scroll-snap-type: y proximity; }
+  header#intro, section, footer { scroll-snap-stop: normal; }
 }
 
 @media (prefers-reduced-motion: reduce) {
