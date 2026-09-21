@@ -55,7 +55,7 @@ const projects = [
     name: '비접촉 온도측정기',
     flowTitle: '비접촉 측정 · 동작 예시',
     flowMode: 'temperature',
-    kind: '하드웨어 제품',
+    kind: '하드웨어 · 펌웨어',
     period: '2021.06 - 2021.07',
     description: 'ESP32와 초음파·적외선 센서를 활용한 비접촉식 발열 체크 및 출입 관리 시스템.',
     tech: 'ESP32, Arduino C++, OpenCV',
