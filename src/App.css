@@ -357,6 +357,12 @@ article .experience-list li:last-child { border-bottom: 0; padding-bottom: 0; }
   gap: 16px;
 }
 
+@media (max-width: 1040px) {
+  .project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 #projects { padding-block: 40px; }
 .project-pages { position: relative; }
 .project-page-arrow {
@@ -397,12 +403,14 @@ article .experience-list li:last-child { border-bottom: 0; padding-bottom: 0; }
   gap: 12px;
   margin-bottom: 18px;
   color: var(--accent);
-  font: 700 12px/1.4 var(--mono);
-  letter-spacing: 0.04em;
+  font: 700 11px/1.4 var(--mono);
 }
 
 .project-meta span:first-child {
   min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .project-meta span:last-child {
