@@ -9,7 +9,7 @@ const profile = {
   github: 'https://github.com/gunoo-p',
   photo: '/profile.jpg',
   intro:
-    '음성인식 키오스크 QA·유지보수부터 비접촉 온도측정기 상용화, 웹/모바일 프론트엔드 개발까지 다양한 환경에서 직접 문제를 찾아 해결해온 개발자입니다. Claude Code 등 AI 도구를 적극 활용해 개발 생산성을 높이고 있습니다.',
+    '음성인식 키오스크 QA·유지보수부터 비접촉 온도측정기 개발, 웹/모바일 프론트엔드 개발까지 다양한 환경에서 직접 문제를 찾아 해결해온 개발자입니다. 최신 기술 동향을 꾸준히 살피고, 새로운 변화를 열린 자세로 받아들이며 배우고 있습니다.',
 }
 
 const experiences = [
@@ -22,7 +22,7 @@ const experiences = [
       { title: '사내 인트라넷 프론트엔드 개발', period: '2020.09–2020.10', description: '게시판 목록·등록·수정·상세 화면 구현.', tech: 'JSP · HTML · CSS · JavaScript · eGovFrame' },
       { title: '카페 모바일 앱 프론트엔드 개발', period: '2021.01–2021.02', description: 'Android UI 구성과 화면 전환, 사용자 입력 이벤트 처리.', tech: 'Java · Android Studio' },
       { title: 'World IT Show 전시 참여', period: '2021.04', description: 'COEX 키오스크 설치·시연 환경 구축, 방문객 시연 및 현장 이슈 대응.' },
-      { title: '비접촉 온도측정기 개발', period: '2021.06–2021.07', description: 'ESP32 기반 하드웨어·펌웨어 개발부터 상용 판매까지 전 과정 주도.', tech: 'ESP32 · OpenCV · Arduino C++' },
+      { title: '비접촉 온도측정기 개발', period: '2021.06–2021.07', description: 'ESP32 기반 하드웨어·펌웨어 개발부터 판매까지 전 과정 주도.', tech: 'ESP32 · OpenCV · Arduino C++' },
     ],
   },
 ]
@@ -36,8 +36,6 @@ const projects = [
     period: '2026.07',
     description:
       'ESP32 센서(온도·습도·차압·가스·공기질)로 반도체 클린룸 환경을 실시간 모니터링하고, 추세 기반 설비 이상 예측과 과거 이벤트 로그를 보여주는 웹 대시보드. MQTT로 센서 데이터를 전달하고 TimescaleDB에 저장하며, Claude API로 로그를 요약합니다.',
-    result:
-      '임계치 초과 시 텔레그램 알림, 하루치 로그는 Claude API로 자연어 요약까지 받아보도록 펌웨어부터 백엔드·프론트엔드까지 직접 구축했습니다.',
     tech: 'ESP32, FastAPI, React, Docker',
     link: 'https://github.com/gunoo-p/cleanroom-dashboard',
   },
@@ -48,7 +46,6 @@ const projects = [
     flow: [['메이크업 피드', 'phone'], ['화장품 탐색', 'search'], ['사진 공유', 'edit']],
     kind: '백엔드 메인 · DevOps',
     description: '퍼스널 컬러와 선호 스타일을 바탕으로 메이크업 피드와 화장품을 탐색하는 뷰티 커뮤니티 앱입니다.',
-    result: '뷰티 커뮤니티 앱 HUR에서 백엔드 메인 개발과 DevOps를 담당했습니다.',
     tech: 'Flutter, Node.js, PostgreSQL, Docker',
     link: 'https://github.com/App-Legend/HUR',
     plan: 'https://polished-jodhpur-0f6.notion.site/HUR-3dd68d782ff4807e82fdfe1801261b14',
@@ -60,7 +57,6 @@ const projects = [
     kind: '하드웨어 제품',
     period: '2021.06 - 2021.07',
     description: 'ESP32와 초음파·적외선 센서를 활용한 비접촉식 발열 체크 및 출입 관리 시스템.',
-    result: '하드웨어부터 펌웨어·인증·판매까지 주도해 식당 3곳에 총 300만 원 규모로 판매했습니다.',
     tech: 'ESP32, Arduino C++, OpenCV',
   },
   {
@@ -71,7 +67,6 @@ const projects = [
     kind: 'QA · 유지보수',
     period: '2020.09 - 2021.07',
     description: '사용자 시나리오 기반 기능·예외 테스트와 하드웨어 점검을 수행한 키오스크 QA 프로젝트.',
-    result: '현장 QA와 운영 오류 수정, World IT Show 설치·시연 및 현장 대응까지 담당했습니다.',
     tech: 'C++, Windows, Hardware QA',
   },
   {
@@ -82,7 +77,6 @@ const projects = [
     kind: '웹 프론트엔드',
     period: '2020.09 - 2020.10',
     description: 'JSP·eGovFrame 환경에서 사내 게시판의 사용자 화면을 구현한 프론트엔드 프로젝트.',
-    result: '게시글 목록·등록·수정·상세 화면의 프론트엔드 구현을 담당했습니다.',
     tech: 'JSP, JavaScript, eGovFrame',
   },
   {
@@ -92,8 +86,7 @@ const projects = [
     flow: [['화면 구성', 'phone'], ['사용자 입력', 'tap'], ['화면 전환', 'navigate']],
     kind: 'Android 프론트엔드',
     period: '2021.01 - 2021.02',
-    description: 'Android Studio에서 카페 모바일 앱의 사용자 화면을 구현한 프론트엔드 프로젝트.',
-    result: '앱의 UI 구성과 화면 전환, 사용자 입력 이벤트 처리를 담당했습니다.',
+    description: '카페 모바일 앱의 사용자 화면을 구현한 프론트엔드 프로젝트.',
     tech: 'Java',
   },
 ]
@@ -296,11 +289,7 @@ function App() {
               </div>
               <h3>{proj.name}</h3>
               <ProjectFlow steps={proj.flow} title={proj.flowTitle} mode={proj.flowMode} />
-              <p className="project-result">{proj.result}</p>
-              <details className="project-details">
-                <summary>프로젝트 개요</summary>
-                <p>{proj.description}</p>
-              </details>
+              <p className="project-description">{proj.description}</p>
               <div className="tag-list">
                 {proj.tech.split(', ').map((tech) => <span key={tech}>{tech}</span>)}
               </div>
@@ -330,8 +319,8 @@ function App() {
       </section>
 
       <footer id="contact">
-        <h2>함께 만들어요.</h2>
-        <p>함께 만들 일이 있다면 편하게 연락해 주세요.</p>
+        <h2>편하게 연락해 주세요.</h2>
+        <p>채용 및 협업 제안은 아래 이메일로 보내주세요.</p>
         <a href={`mailto:${profile.email}`}>{profile.email}</a>
       </footer>
     </main>

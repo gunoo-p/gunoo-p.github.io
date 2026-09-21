@@ -412,16 +412,9 @@ article .experience-list li:last-child { border-bottom: 0; padding-bottom: 0; }
   line-height: 1.6;
 }
 
-.project-card .project-result {
+.project-card .project-description {
   margin-top: 8px;
   color: var(--text-h);
-  font-weight: 550;
-}
-
-.project-details {
-  margin-top: 16px;
-  font-size: 13px;
-  line-height: 1.65;
 }
 
 .sensor-flow {
@@ -480,17 +473,7 @@ article .experience-list li:last-child { border-bottom: 0; padding-bottom: 0; }
   .flow-icon, .qa-check-badge, .temperature-hand, .temperature-signal, .temperature-reading { animation: none; }
 }
 
-.project-details summary {
-  cursor: pointer;
-  color: var(--accent);
-  padding-block: 6px;
-}
-
-.project-details p {
-  margin-top: 8px;
-}
-
-a:focus-visible, summary:focus-visible {
+a:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
 }
