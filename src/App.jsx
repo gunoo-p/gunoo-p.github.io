@@ -35,7 +35,7 @@ const projects = [
     kind: 'IoT · 웹 대시보드',
     period: '2026.07',
     description:
-      'ESP32 센서(온도·습도·차압·가스·공기질)로 반도체 클린룸 환경을 실시간 모니터링하고, 추세 기반 설비 이상 예측과 과거 이벤트 로그를 보여주는 웹 대시보드. MQTT로 센서 데이터를 전달하고 TimescaleDB에 저장하며, Claude API로 로그를 요약합니다.',
+      '센서(온도·습도·차압·가스·공기질)로 반도체 클린룸 환경을 실시간 모니터링하고, 추세 기반 설비 이상 예측과 과거 이벤트 로그를 보여주는 웹 대시보드. MQTT로 센서 데이터를 전달하고 TimescaleDB에 저장하며, Claude API로 로그를 요약합니다.',
     tech: 'ESP32, FastAPI, React, Docker',
     link: 'https://github.com/gunoo-p/cleanroom-dashboard',
   },
