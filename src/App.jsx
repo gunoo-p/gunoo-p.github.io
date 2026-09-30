@@ -184,20 +184,8 @@ function ProjectFlow({ steps = [], title, mode = 'flow' }) {
 
 function App() {
   const [activeSection, setActiveSection] = useState('#intro')
-  const [projectPage, setProjectPage] = useState(0)
-  const [cardsPerPage, setCardsPerPage] = useState(() => window.matchMedia('(max-width: 800px)').matches ? 1 : 3)
-  const projectPages = Math.ceil(projects.length / cardsPerPage)
-  const currentPage = Math.min(projectPage, projectPages - 1)
-
-  useEffect(() => {
-    const media = window.matchMedia('(max-width: 800px)')
-    const resize = () => {
-      setCardsPerPage(media.matches ? 1 : 3)
-      setProjectPage(0)
-    }
-    media.addEventListener('change', resize)
-    return () => media.removeEventListener('change', resize)
-  }, [])
+  const [openProject, setOpenProject] = useState(null)
+  const projectDialog = useRef(null)
   const today = new Date()
   const [birthYear, birthMonth, birthDay] = profile.birthday.split('-').map(Number)
   const birthdayPending = today.getMonth() + 1 < birthMonth ||
@@ -279,31 +267,37 @@ function App() {
 
       <section id="projects">
         <h2>경험한 프로젝트</h2>
-        <div className="project-pages">
-        <button className="project-page-arrow previous" type="button" aria-label="이전 프로젝트 페이지" aria-controls="project-page" onClick={() => setProjectPage((currentPage - 1 + projectPages) % projectPages)}>←</button>
-        <div className="project-grid" id="project-page">
-          {projects.slice(currentPage * cardsPerPage, (currentPage + 1) * cardsPerPage).map((proj) => (
-            <article className="project-card" key={proj.name}>
+        <ul className="folder-grid">
+          {projects.map((proj) => (
+            <li key={proj.name}>
+              <button className="folder" type="button" aria-haspopup="dialog" onClick={() => { setOpenProject(proj); projectDialog.current.showModal() }}>
+                <span className="folder-name">{proj.name}</span>
+                <span className="folder-period">{proj.period}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+        <dialog className="project-dialog" ref={projectDialog} onClose={() => setOpenProject(null)} onClick={(e) => e.target === e.currentTarget && e.currentTarget.close()}>
+          {openProject && (
+            <article className="project-card">
+              <button className="project-dialog-close" type="button" aria-label="닫기" onClick={() => projectDialog.current.close()}>×</button>
               <div className="project-meta">
-                <span>{proj.kind}</span>
-                {proj.period && <span>{proj.period}</span>}
+                <span>{openProject.kind}</span>
+                {openProject.period && <span>{openProject.period}</span>}
               </div>
-              <h3>{proj.name}</h3>
-              <ProjectFlow steps={proj.flow} title={proj.flowTitle} mode={proj.flowMode} />
-              <p className="project-description">{proj.description}</p>
+              <h3>{openProject.name}</h3>
+              <ProjectFlow steps={openProject.flow} title={openProject.flowTitle} mode={openProject.flowMode} />
+              <p className="project-description">{openProject.description}</p>
               <div className="tag-list">
-                {proj.tech.split(', ').map((tech) => <span key={tech}>{tech}</span>)}
+                {openProject.tech.split(', ').map((tech) => <span key={tech}>{tech}</span>)}
               </div>
-              {(proj.link || proj.plan) && <div className="project-links">
-                {proj.link && <a className="project-link" href={proj.link} target="_blank" rel="noreferrer">GitHub ↗</a>}
-                {proj.plan && <a className="project-link" href={proj.plan} target="_blank" rel="noreferrer">기획서 ↗</a>}
+              {(openProject.link || openProject.plan) && <div className="project-links">
+                {openProject.link && <a className="project-link" href={openProject.link} target="_blank" rel="noreferrer">GitHub ↗</a>}
+                {openProject.plan && <a className="project-link" href={openProject.plan} target="_blank" rel="noreferrer">기획서 ↗</a>}
               </div>}
             </article>
-          ))}
-        </div>
-        <button className="project-page-arrow next" type="button" aria-label="다음 프로젝트 페이지" aria-controls="project-page" onClick={() => setProjectPage((currentPage + 1) % projectPages)}>→</button>
-        </div>
-        <p className="project-page-status" aria-live="polite">{currentPage + 1} / {projectPages} · 총 {projects.length}개 프로젝트</p>
+          )}
+        </dialog>
       </section>
 
       <section id="certifications">
