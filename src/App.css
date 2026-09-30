@@ -354,47 +354,34 @@ article .experience-list li:last-child { border-bottom: 0; padding-bottom: 0; }
 .folder-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 36px 20px;
+  gap: 32px 20px;
   margin: 0;
-  padding: 14px 0 0;
+  padding: 0;
   list-style: none;
 }
 
 .folder {
-  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  gap: 6px;
+  align-items: center;
+  gap: 4px;
   width: 100%;
-  min-height: 120px;
-  padding: 20px;
-  box-sizing: border-box;
-  border: 1px solid var(--border);
-  border-radius: 0 16px 16px 16px;
-  background: var(--surface);
+  padding: 8px;
+  border: 0;
+  border-radius: 16px;
+  background: none;
   color: var(--text-h);
   font: inherit;
-  text-align: left;
+  text-align: center;
   cursor: pointer;
-  transition: transform 200ms var(--ease-out), border-color 200ms;
 }
 
-/* folder tab */
-.folder::before {
-  content: '';
-  position: absolute;
-  left: -1px;
-  bottom: 100%;
-  width: 40%;
-  height: 14px;
-  border: 1px solid var(--border);
-  border-bottom: 0;
-  border-radius: 10px 10px 0 0;
-  background: var(--surface);
-}
+.folder-icon { width: min(140px, 80%); margin-bottom: 8px; overflow: visible; }
+.folder-back { fill: var(--accent); opacity: 0.7; }
+.folder-paper { fill: var(--bg); stroke: var(--border); transition: transform 250ms var(--ease-out); }
+.folder-front { fill: var(--accent); transform-box: fill-box; transform-origin: 50% 100%; transition: transform 250ms var(--ease-out); }
 
-.folder-name { font-size: 17px; font-weight: 700; line-height: 1.4; }
+.folder-name { font-size: 16px; font-weight: 700; line-height: 1.4; word-break: keep-all; }
 .folder-period { color: var(--accent); font: 700 11px/1.4 var(--mono); }
 .folder:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
@@ -648,7 +635,8 @@ footer a {
     color: var(--accent);
   }
 
-  .folder:hover { transform: translateY(-4px); border-color: var(--accent-border); }
+  .folder:hover .folder-paper { transform: translateY(-8px); }
+  .folder:hover .folder-front { transform: skewX(-4deg) scaleY(0.94); }
 
 }
 

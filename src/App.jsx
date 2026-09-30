@@ -271,6 +271,11 @@ function App() {
           {projects.map((proj) => (
             <li key={proj.name}>
               <button className="folder" type="button" aria-haspopup="dialog" onClick={() => { setOpenProject(proj); projectDialog.current.showModal() }}>
+                <svg className="folder-icon" viewBox="0 0 120 90" aria-hidden="true">
+                  <path className="folder-back" d="M6 14Q6 8 12 8H40Q44 8 47 11L53 17H108Q114 17 114 23V80Q114 86 108 86H12Q6 86 6 80Z" />
+                  <rect className="folder-paper" x="16" y="22" width="88" height="44" rx="3" />
+                  <path className="folder-front" d="M4 36Q4 30 10 30H110Q116 30 116 36L113 80Q113 86 107 86H13Q7 86 7 80Z" />
+                </svg>
                 <span className="folder-name">{proj.name}</span>
                 <span className="folder-period">{proj.period}</span>
               </button>
