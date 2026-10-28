@@ -94,6 +94,7 @@ const projects = [
 
 const certifications = [
   { name: 'SQLD', date: '2026.03' },
+  { name: '정보처리산업기사 (필기)', date: '2026.02' },
   { name: '정보통신기능사', date: '2025.12' },
   { name: '자동차운전면허증 2종 보통', date: '2021.10' },
   { name: '통신선로기능사', date: '2019.07' },
