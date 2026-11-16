@@ -29,7 +29,8 @@ const experiences = [
 
 const projects = [
   {
-    name: 'MgrS (Skills-GUI)',
+    name: 'MgrS',
+    summary: 'AI 에이전트 스킬 관리 데스크톱 앱',
     flowTitle: 'AI 에이전트 스킬 관리',
     flowMode: 'features',
     flow: [['스킬 스캔', 'search'], ['배포·동기화', 'tools'], ['스킬 랭킹', 'list']],
@@ -42,6 +43,7 @@ const projects = [
   },
   {
     name: '반도체 클린룸 모니터링 대시보드',
+    summary: '클린룸 환경 실시간 모니터링 웹',
     flowTitle: '센서 데이터 전달 과정',
     flow: [['센서 수집', 'wave'], ['FastAPI', 'api'], ['대시보드', 'dashboard']],
     kind: 'IoT · 웹 대시보드',
@@ -53,6 +55,7 @@ const projects = [
   },
   {
     name: 'HUR',
+    summary: '퍼스널 컬러 기반 뷰티 커뮤니티 앱',
     flowTitle: '나만의 뷰티 스타일 탐색',
     flowMode: 'features',
     flow: [['메이크업 피드', 'phone'], ['화장품 탐색', 'search'], ['사진 공유', 'edit']],
@@ -65,6 +68,7 @@ const projects = [
   },
   {
     name: '비접촉 온도측정기',
+    summary: '비접촉 발열 체크·출입 관리 기기',
     flowTitle: '비접촉 측정 · 동작 예시',
     flowMode: 'temperature',
     kind: '하드웨어 · 펌웨어',
@@ -74,6 +78,7 @@ const projects = [
   },
   {
     name: '음성인식 키오스크',
+    summary: '키오스크 기능·하드웨어 테스트',
     flowTitle: 'QA · 유지보수 업무',
     flowMode: 'checklist',
     flow: [['기능 테스트', 'search'], ['오류 수정', 'tools'], ['현장 테스트', 'kiosk']],
@@ -84,6 +89,7 @@ const projects = [
   },
   {
     name: '사내 인트라넷',
+    summary: '사내 게시판 웹 화면 구현',
     flowTitle: '게시판 프론트엔드 구현',
     flowMode: 'features',
     flow: [['게시글 목록', 'list'], ['작성·수정', 'edit'], ['상세 보기', 'document']],
@@ -94,6 +100,7 @@ const projects = [
   },
   {
     name: '카페 모바일 앱',
+    summary: '카페 Android 앱 화면 구현',
     flowTitle: '모바일 프론트엔드 구현',
     flowMode: 'features',
     flow: [['화면 구성', 'phone'], ['사용자 입력', 'tap'], ['화면 전환', 'navigate']],
@@ -290,6 +297,7 @@ function App() {
                   <path className="folder-front" d="M4 36Q4 30 10 30H110Q116 30 116 36L113 80Q113 86 107 86H13Q7 86 7 80Z" />
                 </svg>
                 <span className="folder-name">{proj.name}</span>
+                <span className="folder-summary">{proj.summary}</span>
                 <span className="folder-period">{proj.period}</span>
               </button>
             </li>
