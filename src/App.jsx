@@ -29,6 +29,18 @@ const experiences = [
 
 const projects = [
   {
+    name: 'MgrS (Skills-GUI)',
+    flowTitle: 'AI 에이전트 스킬 관리',
+    flowMode: 'features',
+    flow: [['스킬 스캔', 'search'], ['배포·동기화', 'tools'], ['스킬 랭킹', 'list']],
+    kind: '데스크톱 앱 · 팀 프로젝트',
+    period: '2026.10 - 2026.11',
+    description:
+      'Claude Code, Codex 등 여러 AI 코딩 에이전트의 스킬을 한 화면에서 보고, 배포하고, 찾고, 비교하는 데스크톱 앱. 스킬을 스캔해 한국어 요약과 카테고리로 정리하고, 세션 로그로 미사용 스킬을 찾으며, 업데이트 확인과 인기 랭킹을 제공합니다. AI 해커톤 출품작.',
+    tech: 'Flutter, Dart, macOS · Windows',
+    link: 'https://github.com/App-Legend/Skills-GUI',
+  },
+  {
     name: '반도체 클린룸 모니터링 대시보드',
     flowTitle: '센서 데이터 전달 과정',
     flow: [['센서 수집', 'wave'], ['FastAPI', 'api'], ['대시보드', 'dashboard']],
