@@ -44,7 +44,7 @@ const projects = [
   },
   {
     name: '반도체 클린룸 모니터링 대시보드',
-    langs: ['Python', 'JavaScript'],
+    langs: ['Python', 'JS'],
     summary: '클린룸 환경 실시간 모니터링 웹',
     flowTitle: '센서 데이터 전달 과정',
     flow: [['센서 수집', 'wave'], ['FastAPI', 'api'], ['대시보드', 'dashboard']],
@@ -57,7 +57,7 @@ const projects = [
   },
   {
     name: 'HUR',
-    langs: ['Dart', 'JavaScript'],
+    langs: ['Dart', 'JS'],
     summary: '퍼스널 컬러 기반 뷰티 커뮤니티 앱',
     flowTitle: '나만의 뷰티 스타일 탐색',
     flowMode: 'features',
@@ -71,7 +71,7 @@ const projects = [
   },
   {
     name: '비접촉 온도측정기',
-    langs: ['C++'],
+    langs: ['Arduino'],
     summary: '비접촉 발열 체크·출입 관리 기기',
     flowTitle: '비접촉 측정 · 동작 예시',
     flowMode: 'temperature',
