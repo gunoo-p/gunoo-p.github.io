@@ -30,6 +30,7 @@ const experiences = [
 const projects = [
   {
     name: 'MgrS',
+    langs: ['Dart'],
     summary: 'AI 에이전트 스킬 관리 데스크톱 앱',
     flowTitle: 'AI 에이전트 스킬 관리',
     flowMode: 'features',
@@ -43,6 +44,7 @@ const projects = [
   },
   {
     name: '반도체 클린룸 모니터링 대시보드',
+    langs: ['Python', 'JavaScript'],
     summary: '클린룸 환경 실시간 모니터링 웹',
     flowTitle: '센서 데이터 전달 과정',
     flow: [['센서 수집', 'wave'], ['FastAPI', 'api'], ['대시보드', 'dashboard']],
@@ -55,6 +57,7 @@ const projects = [
   },
   {
     name: 'HUR',
+    langs: ['Dart', 'JavaScript'],
     summary: '퍼스널 컬러 기반 뷰티 커뮤니티 앱',
     flowTitle: '나만의 뷰티 스타일 탐색',
     flowMode: 'features',
@@ -68,6 +71,7 @@ const projects = [
   },
   {
     name: '비접촉 온도측정기',
+    langs: ['C++'],
     summary: '비접촉 발열 체크·출입 관리 기기',
     flowTitle: '비접촉 측정 · 동작 예시',
     flowMode: 'temperature',
@@ -78,6 +82,7 @@ const projects = [
   },
   {
     name: '음성인식 키오스크',
+    langs: ['C++'],
     summary: '키오스크 기능·하드웨어 테스트',
     flowTitle: 'QA · 유지보수 업무',
     flowMode: 'checklist',
@@ -89,6 +94,7 @@ const projects = [
   },
   {
     name: '사내 인트라넷',
+    langs: ['Java'],
     summary: '사내 게시판 웹 화면 구현',
     flowTitle: '게시판 프론트엔드 구현',
     flowMode: 'features',
@@ -100,6 +106,7 @@ const projects = [
   },
   {
     name: '카페 모바일 앱',
+    langs: ['Java'],
     summary: '카페 Android 앱 화면 구현',
     flowTitle: '모바일 프론트엔드 구현',
     flowMode: 'features',
@@ -291,11 +298,16 @@ function App() {
           {projects.map((proj) => (
             <li key={proj.name}>
               <button className="folder" type="button" aria-haspopup="dialog" onClick={() => { setOpenProject(proj); projectDialog.current.showModal() }}>
-                <svg className="folder-icon" viewBox="0 0 120 90" aria-hidden="true">
-                  <path className="folder-back" d="M6 14Q6 8 12 8H40Q44 8 47 11L53 17H108Q114 17 114 23V80Q114 86 108 86H12Q6 86 6 80Z" />
-                  <rect className="folder-paper" x="16" y="22" width="88" height="44" rx="3" />
-                  <path className="folder-front" d="M4 36Q4 30 10 30H110Q116 30 116 36L113 80Q113 86 107 86H13Q7 86 7 80Z" />
-                </svg>
+                <span className="folder-art">
+                  <svg className="folder-icon" viewBox="0 0 120 90" aria-hidden="true">
+                    <path className="folder-back" d="M6 14Q6 8 12 8H40Q44 8 47 11L53 17H108Q114 17 114 23V80Q114 86 108 86H12Q6 86 6 80Z" />
+                    <rect className="folder-paper" x="16" y="22" width="88" height="44" rx="3" />
+                    <path className="folder-front" d="M4 36Q4 30 10 30H110Q116 30 116 36L113 80Q113 86 107 86H13Q7 86 7 80Z" />
+                  </svg>
+                  <span className="folder-langs">
+                    {proj.langs.map((lang) => <span key={lang} className="folder-lang">{lang}</span>)}
+                  </span>
+                </span>
                 <span className="folder-name">{proj.name}</span>
                 <span className="folder-summary">{proj.summary}</span>
                 <span className="folder-period">{proj.period}</span>
