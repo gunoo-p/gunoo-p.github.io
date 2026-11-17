@@ -118,6 +118,12 @@ const projects = [
   },
 ]
 
+const activities = [
+  { name: '캡스톤디자인 경진대회', date: '2026.11', detail: '부스 운영 · 반도체 부트캠프 작품 클린룸 모니터링 대시보드 출품 (11.19~20 예정)' },
+  { name: '대림대학교 AI-Thon', date: '2026.11', detail: '교내 AI 해커톤 참여 · MgrS 출품', photo: '/aithon-mgrs.jpg', photoAlt: 'MgrS 발표 자료 표지', photoSize: [1000, 564] },
+  { name: '대림대학교 테크페어', date: '2026.11', detail: '학과 부스 운영 · 졸업작품 HUR 전시·시연', photo: '/techfair-hur.jpg', photoAlt: '테크페어 부스에 전시한 HUR 포스터와 시연용 태블릿', photoSize: [750, 1000] },
+]
+
 const certifications = [
   { name: 'SQLD', date: '2026.03' },
   { name: '정보처리산업기사 (필기)', date: '2026.02' },
@@ -142,6 +148,7 @@ const sections = [
   { href: '#intro', label: '인트로' },
   { href: '#experience', label: '경력' },
   { href: '#projects', label: '경험한 프로젝트' },
+  { href: '#activities', label: '대외활동' },
   { href: '#certifications', label: '자격증' },
   { href: '#contact', label: '연락처' },
 ]
@@ -336,6 +343,22 @@ function App() {
             </article>
           )}
         </dialog>
+      </section>
+
+      <section id="activities">
+        <h2>대외활동</h2>
+        <ul className="cert-list">
+          {activities.map((act) => (
+            <li key={act.name}>
+              <time dateTime={act.date.replace('.', '-')}>{act.date}</time>
+              <div>
+                <strong>{act.name}</strong>
+                <p className="activity-detail">{act.detail}</p>
+                {act.photo && <img className="activity-photo" src={act.photo} alt={act.photoAlt} width={act.photoSize[0]} height={act.photoSize[1]} loading="lazy" />}
+              </div>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section id="certifications">
