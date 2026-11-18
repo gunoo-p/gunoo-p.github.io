@@ -270,8 +270,9 @@ function App() {
             </div>
           </div>
           <p className="intro-copy">{profile.intro}</p>
-          <nav aria-label="외부 프로필">
+          <nav aria-label="프로필 링크">
             <a className="contact-link" href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a>
+            <a className="contact-link" href="/resume.pdf" download="박건우_이력서.pdf">이력서 ↓</a>
           </nav>
         </div>
         <div className="journey" aria-label="학업과 경력 흐름">
