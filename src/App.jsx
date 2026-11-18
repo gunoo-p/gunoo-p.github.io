@@ -25,6 +25,16 @@ const experiences = [
       { title: '비접촉 온도측정기 개발', period: '2021.06–2021.07', description: 'ESP32 기반 하드웨어·펌웨어 개발부터 판매까지 전 과정 주도.', tech: 'ESP32 · OpenCV · Arduino C++' },
     ],
   },
+  {
+    company: '원할머니보쌈 (화서점)',
+    period: '2023.08 - 현재',
+    title: '홀서빙·포장 아르바이트',
+    highlights: [
+      { title: '매장 고객 응대', description: '주문 접수와 서빙, 손님 요청 응대.' },
+      { title: '포장 주문 처리', description: '포장 주문 준비와 바쁜 시간대 주문 처리.' },
+      { title: '학업 병행 장기 근무', description: '학업과 병행하며 3년 넘게 꾸준히 근무.' },
+    ],
+  },
 ]
 
 const projects = [
@@ -119,9 +129,10 @@ const projects = [
 ]
 
 const activities = [
-  { name: '캡스톤디자인 경진대회', date: '2026.11', detail: '부스 운영 · 반도체 부트캠프 작품 클린룸 모니터링 대시보드 출품 (11.19~20 예정)' },
+  { name: '캡스톤디자인 경진대회', date: '2026.11', detail: '부스 운영 · 반도체 부트캠프 작품 클린룸 모니터링 대시보드 출품 (11.19~20 예정)', photoPending: true },
   { name: '대림대학교 AI-Thon', date: '2026.11', detail: '교내 AI 해커톤 참여 · MgrS 출품', photo: '/aithon-mgrs.jpg', photoAlt: 'MgrS 발표 자료 표지', photoSize: [1000, 564] },
-  { name: '대림대학교 테크페어', date: '2026.11', detail: '학과 부스 운영 · 졸업작품 HUR 전시·시연', photo: '/techfair-hur.jpg', photoAlt: '테크페어 부스에 전시한 HUR 포스터와 시연용 태블릿', photoSize: [750, 1000] },
+  { name: '대림대학교 테크페어', date: '2026.11', detail: '졸업작품 우수작 선정 · 학과 부스 운영 · HUR 전시·시연', photo: '/techfair-hur.jpg', photoAlt: '테크페어 부스에 전시한 HUR 포스터와 시연용 태블릿', photoSize: [750, 1000] },
+  { name: '반도체 부트캠프 마이크로디그리', date: '2026', detail: '중급·고급 과정 이수 · 클린룸 모니터링 대시보드 개발' },
 ]
 
 const certifications = [
@@ -355,6 +366,7 @@ function App() {
                 <strong>{act.name}</strong>
                 <p className="activity-detail">{act.detail}</p>
                 {act.photo && <img className="activity-photo" src={act.photo} alt={act.photoAlt} width={act.photoSize[0]} height={act.photoSize[1]} loading="lazy" />}
+                {act.photoPending && <p className="activity-photo-pending">사진 업데이트 예정입니다.</p>}
               </div>
             </li>
           ))}
