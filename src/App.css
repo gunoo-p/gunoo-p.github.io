@@ -454,6 +454,25 @@ article .experience-list li:last-child { border-bottom: 0; padding-bottom: 0; }
   font-size: 19px;
 }
 
+.project-photo {
+  align-self: center;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 320px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+.project-photo-credit {
+  align-self: center;
+  margin-top: 6px;
+  color: var(--text);
+  font-size: 11px;
+}
+
 .project-card > p {
   color: var(--text);
   font-size: 13px;

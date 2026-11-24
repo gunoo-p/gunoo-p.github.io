@@ -51,6 +51,9 @@ const projects = [
       '여러 개발 프로젝트를 한곳에 모아 실행하고 상태와 로그를 확인하는 데스크톱 앱. 4인 팀에서 PM과 실행 제어를 맡아 전체 실행·종료, 앱 재시작 후 상태 복구, Git 연동을 구현하고 있습니다.',
     tech: 'Flutter, Dart, macOS · Windows',
     link: 'https://github.com/App-Legend/POPOL-ing',
+    photo: '/popoling.jpg',
+    photoAlt: '포폴링 앱의 포트폴리오 카테고리 선택 화면',
+    photoSize: [1000, 790],
   },
   {
     name: 'MgrS',
@@ -65,6 +68,9 @@ const projects = [
       'Claude Code, Codex 등 여러 AI 코딩 에이전트의 스킬을 한 화면에서 보고, 배포하고, 찾고, 비교하는 데스크톱 앱. 스킬을 스캔해 한국어 요약과 카테고리로 정리하고, 세션 로그로 미사용 스킬을 찾으며, 업데이트 확인과 인기 랭킹을 제공합니다. AI 해커톤 출품작.',
     tech: 'Flutter, Dart, macOS · Windows',
     link: 'https://github.com/App-Legend/Skills-GUI',
+    photo: '/mgrs.jpg',
+    photoAlt: 'MgrS에서 설치된 AI 에이전트 스킬을 카드로 보여주는 화면',
+    photoSize: [1000, 628],
   },
   {
     name: 'Alpha Mail',
@@ -79,6 +85,9 @@ const projects = [
       '네이버·Gmail·Outlook 메일을 음성으로 확인하고 말로 답장하는 앱. 음성 인식·요약·낭독을 기기 안에서 처리해 메일 내용을 외부 AI 서버로 보내지 않으며, 확인한 답장만 발송하도록 설계했습니다.',
     tech: 'Flutter, sherpa-onnx, Gemma 4, IMAP',
     link: 'https://github.com/AppLegend-boys/alpha-mail',
+    photo: '/alpha-mail.jpg',
+    photoAlt: '안 읽은 메일을 읽어줄지 묻는 Alpha Mail 홈 화면',
+    photoSize: [483, 1000],
   },
   {
     name: '나문비',
@@ -92,6 +101,9 @@ const projects = [
       'PDF·HWPX·엑셀 등 업무 문서를 검색·요약하고 질문에 답하는 로컬 RAG 서비스. 스캔 문서는 OCR로 읽고, 답변에 파일명과 페이지 근거를 표시합니다.',
     tech: 'FastAPI, React, pgvector, vLLM, Docker',
     link: 'https://github.com/gunoo-p/local_document_ai',
+    photo: '/namunbi.jpg',
+    photoAlt: '나문비에서 문서를 올리고 관리하는 화면',
+    photoSize: [1000, 480],
   },
   {
     name: '반도체 클린룸 모니터링 대시보드',
@@ -105,6 +117,9 @@ const projects = [
       '센서(온도·습도·차압·가스·공기질)로 반도체 클린룸 환경을 실시간 모니터링하고, 추세 기반 설비 이상 예측과 과거 이벤트 로그를 보여주는 웹 대시보드. MQTT로 센서 데이터를 전달하고 TimescaleDB에 저장하며, Gemini API로 로그를 요약합니다.',
     tech: 'ESP32, FastAPI, React, Docker',
     link: 'https://github.com/gunoo-p/cleanroom-dashboard',
+    photo: '/cleanroom-dashboard.jpg',
+    photoAlt: '온도·습도·가스·공기질·차압을 보여주는 클린룸 모니터링 대시보드 화면',
+    photoSize: [1000, 556],
   },
   {
     name: 'HUR',
@@ -119,6 +134,9 @@ const projects = [
     tech: 'Flutter, Node.js, PostgreSQL, Docker',
     link: 'https://github.com/App-Legend/HUR',
     plan: 'https://polished-jodhpur-0f6.notion.site/HUR-3dd68d782ff4807e82fdfe1801261b14',
+    photo: '/techfair-hur.jpg',
+    photoAlt: '테크페어 부스에 전시한 HUR 포스터와 시연용 태블릿',
+    photoSize: [750, 1000],
   },
   {
     name: '비접촉 온도측정기',
@@ -130,6 +148,9 @@ const projects = [
     period: '2021.06 - 2021.07',
     description: 'ESP32와 초음파·적외선 센서를 활용한 비접촉식 발열 체크 및 출입 관리 시스템.',
     tech: 'ESP32, Arduino C++, OpenCV',
+    photo: '/thermometer.jpg',
+    photoAlt: 'QR 스캔 화면이 함께 있는 일체형 비접촉 온도측정기',
+    photoSize: [1000, 688],
   },
   {
     name: '음성인식 키오스크',
@@ -142,6 +163,10 @@ const projects = [
     period: '2020.09 - 2021.07',
     description: '사용자 시나리오 기반 기능·예외 테스트와 하드웨어 점검을 수행한 키오스크 QA 프로젝트.',
     tech: 'C++, Windows, Hardware QA',
+    photo: '/kiosk.jpg',
+    photoAlt: '터치와 말로 주문하는 음성인식 키오스크 두 대',
+    photoSize: [298, 448],
+    photoCredit: 'AVING News',
   },
   {
     name: '사내 인트라넷',
@@ -166,6 +191,10 @@ const projects = [
     period: '2021.01 - 2021.02',
     description: '카페 모바일 앱의 사용자 화면을 구현한 프론트엔드 프로젝트.',
     tech: 'Java',
+    photo: '/cafe-app.jpg',
+    photoAlt: '커피 종류와 수량을 고르는 카페 앱 주문 화면',
+    photoSize: [494, 1000],
+    video: 'https://www.youtube.com/watch?v=k2CxAvBhnM0',
   },
 ]
 
@@ -174,6 +203,7 @@ const activities = [
   { name: '대림대학교 AI-Thon', date: '2026.11', detail: '교내 AI 해커톤 참여 · MgrS 출품', photo: '/aithon-mgrs.jpg', photoAlt: 'MgrS 발표 자료 표지', photoSize: [1000, 564] },
   { name: '대림대학교 테크페어', date: '2026.11', detail: '졸업작품 우수작 선정 · 학과 부스 운영 · HUR 전시·시연', photo: '/techfair-hur.jpg', photoAlt: '테크페어 부스에 전시한 HUR 포스터와 시연용 태블릿', photoSize: [750, 1000] },
   { name: '반도체 부트캠프 마이크로디그리', date: '2026', detail: '중급·고급 과정 이수 · 클린룸 모니터링 대시보드 개발', photo: '/cleanroom-dashboard.jpg', photoAlt: '온도·습도·가스·공기질·차압을 보여주는 클린룸 모니터링 대시보드 화면', photoSize: [1000, 556] },
+  { name: '더기프트쇼 2020', date: '2020.07', detail: '(주)날다 부스 운영 · 음성인식 키오스크 전시·시연 (수원컨벤션센터)', photo: '/giftshow.jpg', photoAlt: '더기프트쇼 날다 부스에 전시한 음성인식 키오스크', photoSize: [960, 467] },
 ]
 
 const certifications = [
@@ -384,14 +414,17 @@ function App() {
                 {openProject.period && <span>{openProject.period}</span>}
               </div>
               <h3>{openProject.name}</h3>
+              {openProject.photo && <img className="project-photo" src={openProject.photo} alt={openProject.photoAlt} width={openProject.photoSize[0]} height={openProject.photoSize[1]} />}
+              {openProject.photoCredit && <small className="project-photo-credit">사진: {openProject.photoCredit}</small>}
               <ProjectFlow steps={openProject.flow} title={openProject.flowTitle} mode={openProject.flowMode} />
               <p className="project-description">{openProject.description}</p>
               <div className="tag-list">
                 {openProject.tech.split(', ').map((tech) => <span key={tech}>{tech}</span>)}
               </div>
-              {(openProject.link || openProject.plan) && <div className="project-links">
+              {(openProject.link || openProject.plan || openProject.video) && <div className="project-links">
                 {openProject.link && <a className="project-link" href={openProject.link} target="_blank" rel="noreferrer">GitHub ↗</a>}
                 {openProject.plan && <a className="project-link" href={openProject.plan} target="_blank" rel="noreferrer">기획서 ↗</a>}
+                {openProject.video && <a className="project-link" href={openProject.video} target="_blank" rel="noreferrer">소개 영상 ↗</a>}
               </div>}
             </article>
           )}
