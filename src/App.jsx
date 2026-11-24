@@ -39,6 +39,20 @@ const experiences = [
 
 const projects = [
   {
+    name: '포폴링',
+    langs: ['Dart'],
+    summary: '프로젝트 실행·관리 데스크톱 앱',
+    flowTitle: '내 프로젝트 실행 관리',
+    flowMode: 'features',
+    flow: [['프로젝트 목록', 'list'], ['실행·종료', 'tools'], ['상태·로그', 'dashboard']],
+    kind: '데스크톱 앱 · 팀 프로젝트 · PM',
+    period: '2026.11 - 진행 중',
+    description:
+      '여러 개발 프로젝트를 한곳에 모아 실행하고 상태와 로그를 확인하는 데스크톱 앱. 4인 팀에서 PM과 실행 제어를 맡아 전체 실행·종료, 앱 재시작 후 상태 복구, Git 연동을 구현하고 있습니다.',
+    tech: 'Flutter, Dart, macOS · Windows',
+    link: 'https://github.com/App-Legend/POPOL-ing',
+  },
+  {
     name: 'MgrS',
     langs: ['Dart'],
     summary: 'AI 에이전트 스킬 관리 데스크톱 앱',
@@ -53,6 +67,33 @@ const projects = [
     link: 'https://github.com/App-Legend/Skills-GUI',
   },
   {
+    name: 'Alpha Mail',
+    langs: ['Dart'],
+    summary: '음성으로 듣고 답장하는 메일 앱',
+    flowTitle: '음성으로 쓰는 메일',
+    flowMode: 'features',
+    flow: [['메일 확인', 'phone'], ['음성 낭독', 'wave'], ['말로 답장', 'edit']],
+    kind: '모바일 앱 · 개인 프로젝트',
+    period: '2026.09 - 진행 중',
+    description:
+      '네이버·Gmail·Outlook 메일을 음성으로 확인하고 말로 답장하는 앱. 음성 인식·요약·낭독을 기기 안에서 처리해 메일 내용을 외부 AI 서버로 보내지 않으며, 확인한 답장만 발송하도록 설계했습니다.',
+    tech: 'Flutter, sherpa-onnx, Gemma 4, IMAP',
+    link: 'https://github.com/AppLegend-boys/alpha-mail',
+  },
+  {
+    name: '나문비',
+    langs: ['Python', 'TS'],
+    summary: '외부 AI 없이 쓰는 문서 비서',
+    flowTitle: '문서 질의응답 과정',
+    flow: [['문서 업로드', 'document'], ['내용 검색', 'search'], ['근거 답변', 'list']],
+    kind: 'AI 문서 검색 · 개인 프로젝트',
+    period: '2026.08 - 2026.09',
+    description:
+      'PDF·HWPX·엑셀 등 업무 문서를 검색·요약하고 질문에 답하는 로컬 RAG 서비스. 스캔 문서는 OCR로 읽고, 답변에 파일명과 페이지 근거를 표시합니다.',
+    tech: 'FastAPI, React, pgvector, vLLM, Docker',
+    link: 'https://github.com/gunoo-p/local_document_ai',
+  },
+  {
     name: '반도체 클린룸 모니터링 대시보드',
     langs: ['Python', 'JS'],
     summary: '클린룸 환경 실시간 모니터링 웹',
@@ -61,7 +102,7 @@ const projects = [
     kind: 'IoT · 웹 대시보드',
     period: '2026.07',
     description:
-      '센서(온도·습도·차압·가스·공기질)로 반도체 클린룸 환경을 실시간 모니터링하고, 추세 기반 설비 이상 예측과 과거 이벤트 로그를 보여주는 웹 대시보드. MQTT로 센서 데이터를 전달하고 TimescaleDB에 저장하며, Claude API로 로그를 요약합니다.',
+      '센서(온도·습도·차압·가스·공기질)로 반도체 클린룸 환경을 실시간 모니터링하고, 추세 기반 설비 이상 예측과 과거 이벤트 로그를 보여주는 웹 대시보드. MQTT로 센서 데이터를 전달하고 TimescaleDB에 저장하며, Gemini API로 로그를 요약합니다.',
     tech: 'ESP32, FastAPI, React, Docker',
     link: 'https://github.com/gunoo-p/cleanroom-dashboard',
   },
@@ -132,7 +173,7 @@ const activities = [
   { name: '캡스톤디자인 경진대회', date: '2026.11', detail: '부스 운영 · 반도체 부트캠프 작품 클린룸 모니터링 대시보드 출품 (11.19~20 예정)', photoPending: true },
   { name: '대림대학교 AI-Thon', date: '2026.11', detail: '교내 AI 해커톤 참여 · MgrS 출품', photo: '/aithon-mgrs.jpg', photoAlt: 'MgrS 발표 자료 표지', photoSize: [1000, 564] },
   { name: '대림대학교 테크페어', date: '2026.11', detail: '졸업작품 우수작 선정 · 학과 부스 운영 · HUR 전시·시연', photo: '/techfair-hur.jpg', photoAlt: '테크페어 부스에 전시한 HUR 포스터와 시연용 태블릿', photoSize: [750, 1000] },
-  { name: '반도체 부트캠프 마이크로디그리', date: '2026', detail: '중급·고급 과정 이수 · 클린룸 모니터링 대시보드 개발' },
+  { name: '반도체 부트캠프 마이크로디그리', date: '2026', detail: '중급·고급 과정 이수 · 클린룸 모니터링 대시보드 개발', photo: '/cleanroom-dashboard.jpg', photoAlt: '온도·습도·가스·공기질·차압을 보여주는 클린룸 모니터링 대시보드 화면', photoSize: [1000, 556] },
 ]
 
 const certifications = [
