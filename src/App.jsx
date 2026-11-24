@@ -21,6 +21,7 @@ const experiences = [
       { title: '음성인식 키오스크 QA · 유지관리', period: '2020.09–2021.07', description: '사용자 시나리오 기반 기능·예외 테스트, 전원·센서 점검과 현장 오류 수정.', tech: 'C++ · Windows' },
       { title: '사내 인트라넷 프론트엔드 개발', period: '2020.09–2020.10', description: '게시판 목록·등록·수정·상세 화면 구현.', tech: 'JSP · HTML · CSS · JavaScript · eGovFrame' },
       { title: '카페 모바일 앱 프론트엔드 개발', period: '2021.01–2021.02', description: 'Android UI 구성과 화면 전환, 사용자 입력 이벤트 처리.', tech: 'Java · Android Studio' },
+      { title: '더기프트쇼 2020 전시 참여', period: '2020.07', description: '수원컨벤션센터 부스 운영, 음성인식 키오스크 전시·시연.' },
       { title: 'World IT Show 전시 참여', period: '2021.04', description: 'COEX 키오스크 설치·시연 환경 구축, 방문객 시연 및 현장 이슈 대응.' },
       { title: '비접촉 온도측정기 개발', period: '2021.06–2021.07', description: 'ESP32 기반 하드웨어·펌웨어 개발부터 판매까지 전 과정 주도.', tech: 'ESP32 · OpenCV · Arduino C++' },
     ],
@@ -37,9 +38,12 @@ const experiences = [
   },
 ]
 
+const projectGroups = ['대림대학교', '개인', '회사']
+
 const projects = [
   {
     name: '포폴링',
+    group: '대림대학교',
     langs: ['Dart'],
     summary: '프로젝트 실행·관리 데스크톱 앱',
     flowTitle: '내 프로젝트 실행 관리',
@@ -57,6 +61,7 @@ const projects = [
   },
   {
     name: 'MgrS',
+    group: '대림대학교',
     langs: ['Dart'],
     summary: 'AI 에이전트 스킬 관리 데스크톱 앱',
     flowTitle: 'AI 에이전트 스킬 관리',
@@ -74,6 +79,7 @@ const projects = [
   },
   {
     name: 'Alpha Mail',
+    group: '대림대학교',
     langs: ['Dart'],
     summary: '음성으로 듣고 답장하는 메일 앱',
     flowTitle: '음성으로 쓰는 메일',
@@ -83,7 +89,7 @@ const projects = [
     period: '2026.09 - 진행 중',
     description:
       '네이버·Gmail·Outlook 메일을 음성으로 확인하고 말로 답장하는 앱. 음성 인식·요약·낭독을 기기 안에서 처리해 메일 내용을 외부 AI 서버로 보내지 않으며, 확인한 답장만 발송하도록 설계했습니다.',
-    tech: 'Flutter, sherpa-onnx, Gemma 4, IMAP',
+    tech: 'Flutter, 로컬 LLM, IMAP',
     link: 'https://github.com/AppLegend-boys/alpha-mail',
     photo: '/alpha-mail.jpg',
     photoAlt: '안 읽은 메일을 읽어줄지 묻는 Alpha Mail 홈 화면',
@@ -91,6 +97,7 @@ const projects = [
   },
   {
     name: '나문비',
+    group: '개인',
     langs: ['Python', 'TS'],
     summary: '외부 AI 없이 쓰는 문서 비서',
     flowTitle: '문서 질의응답 과정',
@@ -107,6 +114,7 @@ const projects = [
   },
   {
     name: '반도체 클린룸 모니터링 대시보드',
+    group: '대림대학교',
     langs: ['Python', 'JS'],
     summary: '클린룸 환경 실시간 모니터링 웹',
     flowTitle: '센서 데이터 전달 과정',
@@ -123,6 +131,7 @@ const projects = [
   },
   {
     name: 'HUR',
+    group: '대림대학교',
     langs: ['Dart', 'JS'],
     summary: '퍼스널 컬러 기반 뷰티 커뮤니티 앱',
     flowTitle: '나만의 뷰티 스타일 탐색',
@@ -140,6 +149,7 @@ const projects = [
   },
   {
     name: '비접촉 온도측정기',
+    group: '회사',
     langs: ['Arduino'],
     summary: '비접촉 발열 체크·출입 관리 기기',
     flowTitle: '비접촉 측정 · 동작 예시',
@@ -154,6 +164,7 @@ const projects = [
   },
   {
     name: '음성인식 키오스크',
+    group: '회사',
     langs: ['C++'],
     summary: '키오스크 기능·하드웨어 테스트',
     flowTitle: 'QA · 유지보수 업무',
@@ -164,12 +175,12 @@ const projects = [
     description: '사용자 시나리오 기반 기능·예외 테스트와 하드웨어 점검을 수행한 키오스크 QA 프로젝트.',
     tech: 'C++, Windows, Hardware QA',
     photo: '/kiosk.jpg',
-    photoAlt: '터치와 말로 주문하는 음성인식 키오스크 두 대',
-    photoSize: [298, 448],
-    photoCredit: 'AVING News',
+    photoAlt: '커피 메뉴를 고르는 음성인식 키오스크 주문 화면',
+    photoSize: [817, 1000],
   },
   {
     name: '사내 인트라넷',
+    group: '회사',
     langs: ['Java'],
     summary: '사내 게시판 웹 화면 구현',
     flowTitle: '게시판 프론트엔드 구현',
@@ -182,6 +193,7 @@ const projects = [
   },
   {
     name: '카페 모바일 앱',
+    group: '회사',
     langs: ['Java'],
     summary: '카페 Android 앱 화면 구현',
     flowTitle: '모바일 프론트엔드 구현',
@@ -199,10 +211,11 @@ const projects = [
 ]
 
 const activities = [
-  { name: '캡스톤디자인 경진대회', date: '2026.11', detail: '부스 운영 · 반도체 부트캠프 작품 클린룸 모니터링 대시보드 출품 (11.19~20 예정)', photoPending: true },
+  { name: '8개 전문대학 연합 캡스톤 디자인 경진대회', date: '2026.11', detail: '도전정신상(사업단장협의회장상) 수상 · 부스 운영 · 반도체 부트캠프 작품 클린룸 모니터링 대시보드 출품', photo: '/capstone-award.jpg', photoAlt: '캡스톤 디자인 경진대회 도전정신상 시상 보드', photoSize: [902, 1000] },
   { name: '대림대학교 AI-Thon', date: '2026.11', detail: '교내 AI 해커톤 참여 · MgrS 출품', photo: '/aithon-mgrs.jpg', photoAlt: 'MgrS 발표 자료 표지', photoSize: [1000, 564] },
   { name: '대림대학교 테크페어', date: '2026.11', detail: '졸업작품 우수작 선정 · 학과 부스 운영 · HUR 전시·시연', photo: '/techfair-hur.jpg', photoAlt: '테크페어 부스에 전시한 HUR 포스터와 시연용 태블릿', photoSize: [750, 1000] },
   { name: '반도체 부트캠프 마이크로디그리', date: '2026', detail: '중급·고급 과정 이수 · 클린룸 모니터링 대시보드 개발', photo: '/cleanroom-dashboard.jpg', photoAlt: '온도·습도·가스·공기질·차압을 보여주는 클린룸 모니터링 대시보드 화면', photoSize: [1000, 556] },
+  { name: 'World IT Show 2021', date: '2021.04', detail: '(주)날다 키오스크 설치·시연 환경 구축 · 방문객 시연 (COEX)', photo: '/world-it-show.jpg', photoAlt: 'World IT Show 2021 날다 부스에 전시한 음성인식 키오스크', photoSize: [650, 1000] },
   { name: '더기프트쇼 2020', date: '2020.07', detail: '(주)날다 부스 운영 · 음성인식 키오스크 전시·시연 (수원컨벤션센터)', photo: '/giftshow.jpg', photoAlt: '더기프트쇼 날다 부스에 전시한 음성인식 키오스크', photoSize: [960, 467] },
 ]
 
@@ -384,27 +397,32 @@ function App() {
 
       <section id="projects">
         <h2>경험한 프로젝트</h2>
-        <ul className="folder-grid">
-          {projects.map((proj) => (
-            <li key={proj.name}>
-              <button className="folder" type="button" aria-haspopup="dialog" onClick={() => { setOpenProject(proj); projectDialog.current.showModal() }}>
-                <span className="folder-art">
-                  <svg className="folder-icon" viewBox="0 0 120 90" aria-hidden="true">
-                    <path className="folder-back" d="M6 14Q6 8 12 8H40Q44 8 47 11L53 17H108Q114 17 114 23V80Q114 86 108 86H12Q6 86 6 80Z" />
-                    <rect className="folder-paper" x="16" y="22" width="88" height="44" rx="3" />
-                    <path className="folder-front" d="M4 36Q4 30 10 30H110Q116 30 116 36L113 80Q113 86 107 86H13Q7 86 7 80Z" />
-                  </svg>
-                  <span className="folder-langs">
-                    {proj.langs.map((lang) => <span key={lang} className="folder-lang">{lang}</span>)}
-                  </span>
-                </span>
-                <span className="folder-name">{proj.name}</span>
-                <span className="folder-summary">{proj.summary}</span>
-                <span className="folder-period">{proj.period}</span>
-              </button>
-            </li>
-          ))}
-        </ul>
+        {projectGroups.map((group) => (
+          <div className="project-group" key={group}>
+            <h3>{group}</h3>
+            <ul className="folder-grid">
+              {projects.filter((proj) => proj.group === group).map((proj) => (
+                <li key={proj.name}>
+                  <button className="folder" type="button" aria-haspopup="dialog" onClick={() => { setOpenProject(proj); projectDialog.current.showModal() }}>
+                    <span className="folder-art">
+                      <svg className="folder-icon" viewBox="0 0 120 90" aria-hidden="true">
+                        <path className="folder-back" d="M6 14Q6 8 12 8H40Q44 8 47 11L53 17H108Q114 17 114 23V80Q114 86 108 86H12Q6 86 6 80Z" />
+                        <rect className="folder-paper" x="16" y="22" width="88" height="44" rx="3" />
+                        <path className="folder-front" d="M4 36Q4 30 10 30H110Q116 30 116 36L113 80Q113 86 107 86H13Q7 86 7 80Z" />
+                      </svg>
+                      <span className="folder-langs">
+                        {proj.langs.map((lang) => <span key={lang} className="folder-lang">{lang}</span>)}
+                      </span>
+                    </span>
+                    <span className="folder-name">{proj.name}</span>
+                    <span className="folder-summary">{proj.summary}</span>
+                    <span className="folder-period">{proj.period}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
         <dialog className="project-dialog" ref={projectDialog} onClose={() => setOpenProject(null)} onClick={(e) => e.target === e.currentTarget && e.currentTarget.close()}>
           {openProject && (
             <article className="project-card">
@@ -415,7 +433,6 @@ function App() {
               </div>
               <h3>{openProject.name}</h3>
               {openProject.photo && <img className="project-photo" src={openProject.photo} alt={openProject.photoAlt} width={openProject.photoSize[0]} height={openProject.photoSize[1]} />}
-              {openProject.photoCredit && <small className="project-photo-credit">사진: {openProject.photoCredit}</small>}
               <ProjectFlow steps={openProject.flow} title={openProject.flowTitle} mode={openProject.flowMode} />
               <p className="project-description">{openProject.description}</p>
               <div className="tag-list">
@@ -441,7 +458,6 @@ function App() {
                 <strong>{act.name}</strong>
                 <p className="activity-detail">{act.detail}</p>
                 {act.photo && <img className="activity-photo" src={act.photo} alt={act.photoAlt} width={act.photoSize[0]} height={act.photoSize[1]} loading="lazy" />}
-                {act.photoPending && <p className="activity-photo-pending">사진 업데이트 예정입니다.</p>}
               </div>
             </li>
           ))}
