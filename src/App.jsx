@@ -396,10 +396,10 @@ function App() {
       </section>
 
       <section id="projects">
-        <h2>경험한 프로젝트</h2>
+        <h2>경험한 프로젝트 ({projects.length}개)</h2>
         {projectGroups.map((group) => (
           <div className="project-group" key={group}>
-            <h3>{group}</h3>
+            <h3>{group} ({projects.filter((proj) => proj.group === group).length}개)</h3>
             <ul className="folder-grid">
               {projects.filter((proj) => proj.group === group).map((proj) => (
                 <li key={proj.name}>
@@ -449,7 +449,7 @@ function App() {
       </section>
 
       <section id="activities">
-        <h2>대외활동</h2>
+        <h2>대외활동 ({activities.length}개)</h2>
         <ul className="cert-list">
           {activities.map((act) => (
             <li key={act.name}>
@@ -465,8 +465,8 @@ function App() {
       </section>
 
       <section id="certifications">
-        <h2>자격증</h2>
-        <p className="section-lead">총 {certifications.length}개 · 최근 취득순</p>
+        <h2>자격증 ({certifications.length}개)</h2>
+        <p className="section-lead">최근 취득순</p>
         <ul className="cert-list">
           {certifications.map((cert) => (
             <li key={cert.name}>
